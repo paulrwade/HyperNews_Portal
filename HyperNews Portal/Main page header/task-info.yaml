@@ -798,29 +798,15 @@ files:
   - name: hypernews/news.json
     visible: true
     learner_created: true
+  - name: db.test.sqlite3
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/projects/102/stages/561/implement#comment
 status: Failed
 feedback:
   message: |-
-    Wrong answer in test #1
+    Error in test #1
 
-    "Coming soon" page (http://localhost:8000/) should contain "Coming soon" text
-
-    Please find below the output of your program during this failed test.
-
-    ---
-
-    stdout:
-    Performing system checks...
-
-    System check identified no issues (0 silenced).
-    April 22, 2024 - 21:29:36
-    Django version 4.1.1, using settings 'hypernews.settings'
-    Starting development server at http://127.0.0.1:8000/
-    Quit the server with CONTROL-C.
-
-    stderr:
-    [22/Apr/2024 21:29:36] "GET / HTTP/1.1" 200 10681
-    [22/Apr/2024 21:29:36] "GET / HTTP/1.1" 200 10681
-  time: "Mon, 22 Apr 2024 21:29:36 UTC"
+    Cannot apply migrations to an empty database.
+  time: "Mon, 22 Apr 2024 21:35:30 UTC"
 record: -1
