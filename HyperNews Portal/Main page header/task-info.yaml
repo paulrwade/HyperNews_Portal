@@ -785,6 +785,9 @@ files:
       
       if __name__ == '__main__':    HyperNewsTestRunner().run_tests()
     learner_created: false
+  - name: news/templates/news/coming_soon.html
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/projects/102/stages/561/implement#comment
 status: Unchecked
 record: -1
