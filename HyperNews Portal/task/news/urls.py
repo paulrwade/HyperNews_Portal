@@ -1,6 +1,7 @@
 from django.urls import path, include
+from . import views
 
 
 urlpatterns = [
-	path('', name="coming_soon"),
+	path('', views.IndexView.as_view(), name="coming_soon"),
 ]
