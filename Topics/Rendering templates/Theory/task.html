@@ -1,0 +1,127 @@
+<h2>Rendering templates</h2>
+<div class="step-text">
+<p>When you construct a site, you design it to be optimized. For example, you don't want to rewrite the HTML code when adding new data to the site. Django provides rendering templates to solve this problem.</p>
+<p>The site receives a request, does the heavy lifting, and passes the data further to prepare HTML pages. For adjusting the HTML templates, the processing requests may stay the same. In this topic, you'll learn how to bind these two parts together.</p>
+<h5 id="rendering">Rendering</h5>
+<p>Jack Torrance started working on his new book called <em>Shining</em>. He wants to publish this book online, with the table of contents on the main page and each chapter on a separate page. He sends the first draft of his story:</p>
+<pre><code class="language-python">book = {
+    'Chapter 1': 'All work and no play makes Jack a dull boy...',
+    'Chapter 2': 'All work and no play makes Jack a dull boy...',
+    'Chapter 3': 'All work and no play makes Jack a dull boy...',
+    'Chapter 4': 'All work and no play makes Jack a dull boy...',
+}</code></pre>
+<p>So, you start making the site. We created a project named <code class="language-python">booksite</code> with the <code class="language-python">book</code> app inside. Then, we created the <em>templates</em> and <em>book</em> directory. Now, we have this tree of our project:</p>
+<pre><code class="language-bash">booksite
+├── book
+│   ├── templates
+│   │   └── book
+│   ├── urls.py
+│   └── views.py
+└── booksite
+    ├── urls.py
+    └── settings.py</code></pre>
+<p>This novel seems a bit strange, but anyway, let's create an HTML template for the main page with the contents of the book and add it to the <em>book/templates/book/contents.html</em> file:</p>
+<pre><code class="language-html">&lt;h2&gt; Shining &lt;/h2&gt;
+&lt;ul&gt;
+  {% for chapter in book %}
+  &lt;li&gt;
+    &lt;a href="/chapter/{{ forloop.counter }}"&gt;Chapter {{ forloop.counter }}&lt;/a&gt;
+  &lt;/li&gt;
+  {% endfor %}
+&lt;/ul&gt;</code></pre>
+<p>Each unordered list item links to a chapter page, so users can comfortably read each chapter on a separate HTML page.</p>
+<p>To return a user to the contents page, we need to implement an HTTP handler with the <code class="language-python">get</code> method to the <em>views.py</em> file:</p>
+<pre><code class="language-python">from django.views import View
+from django.shortcuts import render
+ 
+# book variable mentioned above can be declared here
+ 
+class MainPageView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, 'book/contents.html', context={'book': book})</code></pre>
+<p>We call the <code class="language-python">render</code> function and pass the template path and the <code class="language-python">context</code> dictionary with the book to it. All the variables from the <code class="language-python">context</code> dictionary will be available in the template, and we can access them by key from a dictionary.</p>
+<p>There's also another way. You can declare the <code class="language-python">book</code> variable inside the <code class="language-python">MainPageView</code> class. In this case, <code class="language-python">book</code> will be a <code class="language-python">class</code> field, so when we want to use the variable, we must add <code class="language-python">self.</code> before.</p>
+<p></p><div class="alert alert-warning">
+<p>By default, Django looks for templates in the <em>&lt;application_name&gt;/templates</em> directories, so we do not include <em>book/templates</em> in the template path because Django will do it for us.</p>
+<p></p></div>
+<p style="text-align: center;"><picture><source media="(max-width: 480px)" srcset="https://ucarecdn.com/dbe23b2e-17b0-47b6-b975-07249d985c09/-/stretch/off/-/resize/480x/-/format/webp/ 1x,https://ucarecdn.com/dbe23b2e-17b0-47b6-b975-07249d985c09/-/stretch/off/-/resize/960x/-/format/webp/ 2x,https://ucarecdn.com/dbe23b2e-17b0-47b6-b975-07249d985c09/-/stretch/off/-/resize/1440x/-/format/webp/ 3x" type="image/webp"/><source media="(max-width: 800px)" srcset="https://ucarecdn.com/dbe23b2e-17b0-47b6-b975-07249d985c09/-/stretch/off/-/resize/800x/-/format/webp/ 1x,https://ucarecdn.com/dbe23b2e-17b0-47b6-b975-07249d985c09/-/stretch/off/-/resize/1600x/-/format/webp/ 2x,https://ucarecdn.com/dbe23b2e-17b0-47b6-b975-07249d985c09/-/stretch/off/-/resize/2400x/-/format/webp/ 3x" type="image/webp"/><source srcset="https://ucarecdn.com/dbe23b2e-17b0-47b6-b975-07249d985c09/-/stretch/off/-/resize/1100x/-/format/webp/ 1x,https://ucarecdn.com/dbe23b2e-17b0-47b6-b975-07249d985c09/-/stretch/off/-/resize/2200x/-/format/webp/ 2x,https://ucarecdn.com/dbe23b2e-17b0-47b6-b975-07249d985c09/-/stretch/off/-/resize/3000x/-/format/webp/ 3x" type="image/webp"/><img alt="Main page rendering" height="216" src="https://ucarecdn.com/dbe23b2e-17b0-47b6-b975-07249d985c09/" width="477"/></picture></p>
+<h5 id="templateview-class">TemplateView class</h5>
+<p>In the example above, we've defined the HTTP handler with the <code class="language-python">get</code> method. This method is idle, as it delegates all the work to the <code class="language-python">render</code> function. Is there a more straightforward way to write this in the code?</p>
+<p>You can use one of the<em> </em><strong>built-in<em> </em>Django classes </strong>— <code class="language-python">TemplateView</code>. <code class="language-python">TemplateView</code> renders a template with the context containing parameters captured in the URL. This class can be used as an HTTP handler or inherited to create a new one.</p>
+<p>In the following example, we will explore using the <code class="language-python">TemplateView</code> by creating a single chapter page. First, a new template should be created in the <em>book/templates/book/chapter.html</em>:</p>
+<pre><code class="language-html">&lt;h2&gt; Chapter {{ n_chapter }} &lt;/h2&gt;
+&lt;ul&gt;
+  {{ content }}
+&lt;/ul&gt;</code></pre>
+<p>In the next step, we are going to make an HTTP handler by creating the new class <code class="language-python">ChapterView</code><span style="color: #ff4363;"> </span>in the <em>views.py</em> file that inherits from <code class="language-python">TemplateView</code>. To specify the HTML template path, define the class <code class="language-python">template_name</code> property.</p>
+<p></p><div class="alert alert-warning">
+<p>The pattern for defining the template path in <code class="language-python">template_name</code> is the same as the one we used in the previous section.</p>
+<p></p></div>
+<pre><code class="language-python">from django.views.generic.base import TemplateView
+ 
+ 
+class ChapterView(TemplateView):
+    template_name = 'book/chapter.html'</code></pre>
+<p>The HTTP handler defined in the example above will automatically render the specified HTML template by providing context containing the chapter number defined in the URL. The context works as a dictionary, as in the previous section. However, the <code class="language-python">content</code> parameter required for rendering the template is not present in the URL path.</p>
+<p>To extend the context generated by <code class="language-python">TemplateView</code> in the background, define the <code class="language-python">get_context_data</code> method inside the <code class="language-python">ChapterView</code><em> </em>class:</p>
+<pre><code class="language-python">    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs) 
+        n_chapter = str(context['n_chapter'])
+        context['content'] = books['Chapter ' + n_chapter]
+        return context</code></pre>
+<p>The <code class="language-python">super().get_context_data()</code> method retrieves the context created by <code class="language-python">TemplateView</code>. In the next step, the context is extended with the <code class="language-python">content</code> parameter, and this context will be used for rendering the template.</p>
+<p>Defining a correct URL router pattern is the last thing to make the HTTP handler work. <code class="language-python">ChapterView</code> expects to receive the variable <code class="language-python">n_chapter</code> as the <code class="language-python">**kwargs</code> argument of the <code class="language-python">get_context_data</code> method, so the<strong> </strong>URL path should contain a path variable named <code class="language-python">n_chapter</code> of the <em>int </em>type. URL should be placed in the <code class="language-python">urlpatterns</code> inside the <em>urls.py</em> file:</p>
+<pre><code class="language-html">path('chapter/&lt;int:n_chapter&gt;', book.views.ChapterView.as_view())</code></pre>
+<p></p><div class="alert alert-primary">
+<p>In the code piece above, the <code class="language-python">n_chapter</code> variable will be found by a regular expression. This means that Django looks for a number, and after that, we can get it from the <code class="language-python">**kwargs</code>.</p>
+<p></p></div>
+<p>The rendered single-chapter page should look like this:</p>
+<p style="text-align: center;"><picture><source media="(max-width: 480px)" srcset="https://ucarecdn.com/016c17ca-689e-4b5b-af3b-b55d42e61c86/-/stretch/off/-/resize/480x/-/format/webp/ 1x,https://ucarecdn.com/016c17ca-689e-4b5b-af3b-b55d42e61c86/-/stretch/off/-/resize/960x/-/format/webp/ 2x,https://ucarecdn.com/016c17ca-689e-4b5b-af3b-b55d42e61c86/-/stretch/off/-/resize/1440x/-/format/webp/ 3x" type="image/webp"/><source media="(max-width: 800px)" srcset="https://ucarecdn.com/016c17ca-689e-4b5b-af3b-b55d42e61c86/-/stretch/off/-/resize/800x/-/format/webp/ 1x,https://ucarecdn.com/016c17ca-689e-4b5b-af3b-b55d42e61c86/-/stretch/off/-/resize/1600x/-/format/webp/ 2x,https://ucarecdn.com/016c17ca-689e-4b5b-af3b-b55d42e61c86/-/stretch/off/-/resize/2400x/-/format/webp/ 3x" type="image/webp"/><source srcset="https://ucarecdn.com/016c17ca-689e-4b5b-af3b-b55d42e61c86/-/stretch/off/-/resize/1100x/-/format/webp/ 1x,https://ucarecdn.com/016c17ca-689e-4b5b-af3b-b55d42e61c86/-/stretch/off/-/resize/2200x/-/format/webp/ 2x,https://ucarecdn.com/016c17ca-689e-4b5b-af3b-b55d42e61c86/-/stretch/off/-/resize/3000x/-/format/webp/ 3x" type="image/webp"/><img alt="Single chapter page rendering" height="200" src="https://ucarecdn.com/016c17ca-689e-4b5b-af3b-b55d42e61c86/" width="572"/></picture></p>
+<p>You can see the whole code below:</p>
+<pre><code class="language-python">from django.views.generic.base import TemplateView
+ 
+class ChapterView(TemplateView):  # create an HTTP handler
+    template_name = 'book/chapter.html'  # specify a HTML template
+	
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs) 
+        # call get_context_data of the parent to add data to the context
+        n_chapter = str(context['n_chapter'])
+        context['content'] = books['Chapter ' + n_chapter]
+        return context  # return the context in which the new data were added
+</code></pre>
+<p>The final tree of our project now looks like this:</p>
+<pre><code class="language-bash">booksite
+├── book
+│   ├── templates
+│   │   └── book
+│   │       ├── contents.html
+│   │       └── chapter.html
+│   ├── urls.py
+│   └── views.py
+└── booksite
+    ├── urls.py
+    └── settings.py</code></pre>
+<h5 id="conclusion">Conclusion</h5>
+<p>Rendering templates separate the request's processing and the content's final representation. In this topic, we've taken a look at two ways of rendering templates:</p>
+<ul>
+<li>
+<p>The <code class="language-python">render</code> function, and</p>
+</li>
+<li>
+<p>The <code class="language-python">TemplateView</code> built-in Django class.</p>
+</li>
+</ul>
+<p>Both of these ways work. However, the second method suits static pages, so it should be used in the following cases:</p>
+<ul>
+<li>
+<p>View simple static pages, such as <em>About the Author</em> or <em>About the Company</em>;</p>
+</li>
+<li>
+<p>Display pages with a simple context;</p>
+</li>
+<li>
+<p>Show pages with all their content described in the HTML template;</p>
+</li>
+</ul>
+</div>

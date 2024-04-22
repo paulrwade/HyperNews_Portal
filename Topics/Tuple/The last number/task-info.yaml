@@ -1,0 +1,34 @@
+type: code
+files:
+  - name: main.py
+    visible: true
+    text: |-
+      # use this tuple
+      numbers = tuple(int(n) for n in input().split())
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/7471#comment
+status: Failed
+feedback:
+  message: |
+    Failed test #1 of 3. Runtime error
+
+    This is a sample test from the problem statement!
+
+    Test input:
+    24 22 42
+
+    Correct output:
+    42
+
+    Your code output:
+
+
+    Error:
+    Traceback (most recent call last):
+      File "/sandbox/main.py", line 1, in <module>
+        print(tuple_numbers[-1])
+              ^^^^^^^^^^^^^
+    NameError: name 'tuple_numbers' is not defined
+  time: "Sat, 20 Apr 2024 04:24:10 UTC"
+record: -1
+submission_language: python3

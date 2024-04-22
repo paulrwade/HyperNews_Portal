@@ -1,0 +1,18 @@
+type: choice
+is_multiple_choice: false
+options:
+  - text: <code>get_data_context</code>
+  - text: <code>get_context_data</code>
+  - text: <code>get_template_data</code>
+  - text: <code>get_data</code>
+files:
+  - name: main.py
+    visible: true
+    text: |+
+      #  You can experiment here, it won’t be checked
+    
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/26494#comment
+status: Solved
+record: -1
+local_check: false

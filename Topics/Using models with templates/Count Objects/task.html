@@ -1,0 +1,9 @@
+<h2>Count Objects</h2>
+<div class="step-text">
+<p>We have a model <code class="language-python">Drink</code> with fields <em>brand, taste</em>:</p>
+<pre><code class="language-python">class Drink(models.Model):
+    brand = models.CharField(max_length=32)
+    taste = models.CharField(max_length=32)</code></pre>
+<p>We pass a QuerySet with drinks to a template in context dictionary: <code class="language-python">{'drinks': ...}</code>.</p>
+<p>Render the number of drinks passed in the QuerySet.</p><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 15 seconds</font><br><br>
+</div>

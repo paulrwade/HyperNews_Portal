@@ -1,0 +1,24 @@
+<h2>Music is the key</h2>
+<div class="step-text">
+<p></p>
+<p>Below, we created the <code class="language-python">Album</code> model.</p>
+<pre><code class="language-python">class Album(models.Model):
+    title = models.CharField(max_length=30)
+    artist = models.CharField(max_length=30)
+    genre = models.CharField(max_length=30)</code></pre>
+<p>We then used the model to populate the database with well-known albums of famous  rock bands from this dictionary:</p>
+<pre><code class="language-python">artists = {
+    'Beatles': ['Revolver', "Sgt Pepper's Lonely Hearts Club Band", 'The Beatles (The White Album)', 'Abbey Road', 'Rubber Soul'], 
+    'Rolling Stones': ['Exile On Main Street', 'Sticky Fingers'], 
+    'Clash ': ['London Calling'],
+    'Smashing Pumpkins': ['Mellon Collie And The Infinite Sadness', 'Siamese Dream']
+}</code></pre>
+<p>We would like you to write ORM queries to perform some operations on the database. Like so:</p>
+<ol>
+<li>Filter all the albums from <code class="language-python">Beatles</code>;</li>
+<li>Insert the <code class="language-python">Nirvana</code> artist into the database with the album <code class="language-python">Nevermind</code> and the genre is <code class="language-python">rock</code>;</li>
+<li>Retrieve all artists, excluding <code class="language-python">Nirvana</code>;</li>
+<li>Delete the <code class="language-python">Siamese Dream</code> album from <code class="language-python">Smashing Pumpkins</code>.</li>
+</ol>
+<p>You don't need to print or retrieve something, just write the correct queries. </p><br><br><font color="gray">Memory limit: 256 MB</font><br><font color="gray">Time limit: 15 seconds</font><br><br>
+</div>

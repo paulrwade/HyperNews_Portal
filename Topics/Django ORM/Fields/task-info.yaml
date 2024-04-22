@@ -1,0 +1,18 @@
+type: choice
+is_multiple_choice: false
+options:
+  - text: The collection of Models in one application
+  - text: A class that maps an attribute of the Model to a column in the database table
+  - text: The Model that consists of primitive types only
+  - text: A class that maps Python objects to a database record
+files:
+  - name: main.py
+    visible: true
+    text: |+
+      #  You can experiment here, it won’t be checked
+    
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/6836#comment
+status: Solved
+record: -1
+local_check: false

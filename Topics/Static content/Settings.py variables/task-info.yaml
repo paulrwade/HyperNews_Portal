@@ -1,0 +1,21 @@
+type: code
+files:
+  - name: main.py
+    visible: true
+    highlight_level: NONE
+    text: |-
+      DEBUG = ...
+      
+      STATIC_URL = ...
+      STATICFILES_DIRS = ...
+      
+      MEDIA_URL = ...
+      MEDIA_ROOT = ...
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/33356#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Sun, 21 Apr 2024 22:33:15 UTC"
+record: -1
+submission_language: python3

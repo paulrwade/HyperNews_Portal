@@ -1,0 +1,78 @@
+<h2>Object modification with ORM</h2>
+<div class="step-text">
+<p>The world changes over time, and so does your data. When you have a new object to store, you create it in a database for further use; if you don't need it anymore, you delete it. When the object's properties change, you make an update. These three actions along with reading are known as <strong>CRUD </strong>(Create, Read, Update, Delete) operations.</p><p>Even though Django methods use almost identical naming, let's look at them closer and learn how to use them right.</p><h5 id="create">Create</h5><p>Learning is hard, so we decide to take a break and make a truly entertaining computer game for ourselves. The galaxy is in danger, and our brave space team must prevent the alien invasion. The main weapons of our team are diplomacy and science. This time, we need only two models to start the game:</p><pre><code class="language-python">from django.db import models
+
+
+class Alien(models.Model):
+    db_column = models.CharField(max_length=32)
+    distance_to_galaxy = models.IntegerField()
+    threat = models.IntegerField()
+    speed = models.IntegerField()
+
+
+class Weapon(models.Model):
+    db_column = models.CharField(max_length=32)
+    quantity = models.IntegerField()
+    power = models.IntegerField()
+    coverage_distance = models.IntegerField()</code></pre><p>First, we should create some weapons for our heroes. Let's equip them with <code class="language-python">eloquence</code> to convince aliens to go away and <code class="language-python">jammers</code> to modify the scouting signals:</p><pre><code class="language-python">eloquence = Weapon.objects.create(
+   type='eloquence', power=100, coverage_distance=100, quantity=10
+)
+jammers = Weapon(type='jammer', power=10, coverage_distance=1000, quantity=50)
+jammers.save()</code></pre><p>Two methods illustrate how you can create new objects in a database. We create <code class="language-python">eloquence</code> with the help of Object Manager. It has the method <code class="language-python">create</code> where you can pass all the parameters your object has. If the result of this operation is successful, by calling it, you save the object to the database and return the instance of the <code class="language-python">Weapon</code> class.</p><p>The second method is to create an instance of a class and then save it manually. The two methods are pretty much the same, so you can use whichever you like most.</p><p></p><div class="alert alert-warning"><p>When you create an instance manually, the object will not be saved to a database until you call the save method explicitly.</p></div><p></p><h5 id="delete">Delete</h5><p>The alien invasion is coming. Meanwhile, we hope that our game will attract gamers and won't be boring. For each session, we'll create hundreds or even thousands of aliens to make the battle hard. If we don't clear the database of all the defeated aliens, operations will become slower, and we will eventually run out of disk space.</p><p>The first enemy comes from a nearby galaxy, located only 23 solar years from ours:</p><pre><code class="language-python">et_alien = Alien.objects.create(type='ET', distance_to_galaxy=23, threat=70, speed=5)</code></pre><p>In five moves, it crosses the border, so the player can apply <code class="language-python">eloquence</code> to deceive the opponent and make it back up. The power of <code class="language-python">eloquence</code> is <code class="language-python">100</code> and the threat is <code class="language-python">70</code>, so in one move the player can resist the first invasion!</p><p>We do not need the <code class="language-python">et_alien</code> anymore, so let's delete it:</p><pre><code class="language-python">et_alien.delete()</code></pre><p>That's simple. We call the <code class="language-python">delete</code> method of an instance of the <code class="language-python">Alien</code> class, and the object is deleted from the database.</p><p></p><div class="alert alert-warning"><p>The <code class="language-python">delete</code> method removes the object from a database but does not delete an instance of a class. Do not use the object after this operation to prevent ambiguity.</p></div><p></p><p>The game continues…</p><h5 id="update">Update</h5><p>We have studied two main powers of modification: <code class="language-python">create</code> and <code class="language-python">delete</code>. The third power is to change an existing object. When the properties of an object change, we should update them in the database.</p><p>The next enemy of the galaxy is the <code class="language-python">Predator</code>, an opponent that can hardly be defeated in a single move since it comes from the deep space, and our weapons are not strong enough.</p><pre><code class="language-python">predator = Alien.objects.create(type='Predator', distance_to_galaxy=550, threat=40, speed=30)</code></pre><p>Our <code class="language-python">jammers</code> create obstacles for signals in space, so the enemy loses direction. The player applies this weapon on the next move. The number of jammers decreased by one, and simultaneously the threat is diminished:</p><pre><code class="language-python">jammers.quantity -= 1
+jammers.save()
+
+predator.distance_to_galaxy -= predator.speed
+predator.threat -= jammers.power
+predator.save()</code></pre><p>Updating an object is a two-step operation. We change the attributes of an object and call the <code class="language-python">save</code> method as for manual creation of an object. </p><p>In case of error, we used <code class="language-python">change</code> only in one place. To avoid this, the best practice is to use atomic as a decorator:</p><pre><code class="language-python">from django.db import IntegrityError, transaction
+
+@transaction.atomic
+def changes():
+    jammers.quantity -= 1
+    jammers.save()
+
+    predator.distance_to_galaxy -= predator.speed
+    predator.threat -= jammers.power
+    predator.save()</code></pre><p>If the nested block succeeds, the changes it made to the database can be undone if an error occurs in the outer code block.</p><p></p><div class="alert alert-warning"><p>The instance attributes are saved only in a Python object until you call the save method. Your object is not an exact replica of a database row in a current moment, so remember to save it to synchronize the changes you made.</p></div><p></p><p>In three more moves, the player defeats the <code class="language-python">Predator</code> with <code class="language-python">jammers</code>, and it flies away in an unknown direction. We call <code class="language-python">predator.delete()</code> and go forward to the next round.</p><h5 id="modification-of-queryset">Modification of QuerySet</h5><p>We can modify each object as we like, but remember — aliens may come in a swarm. Can we apply our weapons to all of them simultaneously? With the approach we've just considered, the answer would be no<em>. </em>If only we could use a <code class="language-python">QuerySet</code> for this task… The good news is we surely can!</p><p>Space bugs come in a pack of three:</p><pre><code class="language-python">Alien.objects.bulk_create([
+    Alien(type='Space Bug', distance_to_galaxy=30, threat=150, speed=12) for _ in range(3)
+])</code></pre><p>On the first move, the player applies <code class="language-python">eloquence</code>:</p><pre><code class="language-python">eloquence.quantity -= 1
+eloquence.save()
+
+space_bug = Alien.objects.filter(type='Space Bug').first()
+
+Alien.objects.filter(type='Space Bug').update(
+   distance_to_galaxy=space_bug.distance_to_galaxy - space_bug.speed,
+   threat=space_bug.threat - eloquence.power
+)</code></pre><p>The bugs are not defeated yet, but we update their position and threat in one call, not three. We get an Object Manager of a model, filter out objects that we want, and call <code class="language-python">update</code> on the <code class="language-python">QuerySet</code>. The syntax is the same: we pass parameters and their new values to the method, and Django does the rest of the work with the database.</p><p>Finally, the player applies <code class="language-python">eloquence</code> again and the bugs are convinced to stop their invasion. Again, we call the method on a <code class="language-python">QuerySet</code>:</p><pre><code class="language-python">Alien.objects.filter(type='Space Bug').delete()</code></pre><p>All space bugs are now removed from the database.</p><p></p><div class="alert alert-warning"><p>Although the delete method works for both an object and a QuerySet, the update method is defined only for a QuerySet. If you call an update method on an object, you'll get an <code class="language-python">AttributeError </code>exception.</p></div><p></p><p>We have only three rounds, so the game is over. This time, the player wins and saves our galaxy from all space creatures out there. No aliens were harmed during the making of this topic.</p><h5 id="other-methods-in-django-orm">Other methods in Django ORM</h5><p>Now that the galaxy is saved, we can return to our planet and discuss other ORM methods, this time in a more peaceful way. In addition to the well-known methods such as <code class="language-python">filter()</code>, <code class="language-python">get()</code>, <code class="language-python">update()</code>, <code class="language-python">all()</code>, and <code class="language-python">delete()</code>, Django ORM provides a lot of other methods that allow us to exploit the power of SQL queries. Often we want to spend some quality time watching movies. That is also the reason we decided to illustrate these additional methods by creating the movie table below. </p><pre><code class="language-python">class Movie(models.Model):
+    title = models.CharField(max_length=100)
+    genre = models.CharField(max_length=20)
+    release_year = models.IntegerField()
+    director = models.ForeignKey(Director, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title</code></pre><p>As you may well have noticed, the movie table has a foreign key relationship with the director table, so let us define the <code class="language-python">Director</code> model as well:</p><pre><code class="language-python">class Director(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(null=True, blank=True)
+    address = models.TextField()
+    
+    def __str__(self):
+        return self.name</code></pre><p>At first, we would like to mention the <code class="language-python">values()</code> and <code class="language-python">values_list()</code> methods. These methods are quite similar. Both return Python objects instead of <code class="language-python">QuerySet</code> objects. The major difference between them is that the first one will return dictionaries while the second one returns tuples:</p><pre><code class="language-python">movies_dict = Movie.objects.values()
+print(movies_dict)
+
+# &lt;QuerySet [{'id': 1, 'title': 'Bonnie and Clyde', 'genre': 'action', 'release_year': 1967, 'director': 'Arthur Penn'}, {'id': 2, 'title': 'The Seven Samurai', 'genre': 'action', 'release_year': 1954, 'director': 'Akira Kurosawa'}, {'id': 3, 'title': 'Doctor Zhivago', 'genre': 'drama', 'release_year': 1965, 'director': 'David Lean'}, {'id': 4, 'title': 'Rocky', 'genre': 'adventure', 'release_year': 1976, 'director': 'John G. Avildsen'}, {'id': 5, 'title': 'Braveheart', 'genre': 'action', 'release_year': 1995, 'director': 'Mel Gibson'}]&gt;
+
+
+movies_tuple = Movie.objects.values_list()
+print(movies_tuple)
+
+# &lt;QuerySet [(1, 'Bonnie and Clyde', 'action', 1967, 'Arthur Penn'), (2, 'The Seven Samurai', 'action', 1954, 'Akira Kurosawa'), (3, 'Doctor Zhivago', 'drama', 1965, 'David Lean'), (4, 'Rocky', 'adventure', 1976, 'John G. Avildsen'), (5, 'Braveheart', 'action', 1995, 'Mel Gibson')]&gt;</code></pre><p>The <code class="language-python">order_by()</code> method changes the default ordering of the <code class="language-python">QuerySet</code>. By default, the order is based on the primary key (in our case, the <code class="language-python">id</code> field). If we want our <code class="language-python">QuerySet</code> to be ordered by <code class="language-python">release_year</code>, the <code class="language-python">order_by</code> method is exactly what we need:</p><pre><code class="language-python">ordered_movies = Movie.objects.order_by('release_year')
+print(ordered_movies)
+
+# &lt;QuerySet [&lt;Movie: The Seven Samurai&gt;, &lt;Movie: Doctor Zhivago&gt;, &lt;Movie: Bonnie and Clyde&gt;, &lt;Movie: Rocky&gt;, &lt;Movie: Braveheart&gt;]&gt;</code></pre><p>You also can sort the data in descending order by adding a minus (<code class="language-python">-</code>) before the value:</p><pre><code class="language-python">descend_ordered_movies = Movie.objects.order_by('-release_year')
+print(descend_ordered_movies)
+
+# &lt;QuerySet [&lt;Movie: Braveheart&gt;, &lt;Movie: Rocky&gt;, &lt;Movie: Bonnie and Clyde&gt;, &lt;Movie: Doctor Zhivago&gt;, &lt;Movie: The Seven Samurai&gt;]&gt;</code></pre><p>Lastly, we want to mention the <code class="language-python">select_related()</code> method that can be used to improve database performance by retrieving all related data without performing multiple database searches. As you remember, our movie table has a foreign key relationship to the director table. To retrieve all related data, including the director at the first database lookup, we can use <code class="language-python">select_related()</code> like so:</p><pre><code class="language-python">rocky = Movie.objects.select_related('director').filter(title='rocky')
+print(rocky.director) # director has already been retrieved. Database is not hit again.
+
+
+# &lt;Director: John G. Avildsen&gt;</code></pre><p></p><div class="alert alert-warning"><p>Each foreign key relationship requires an additional database lookup. In the example above, this is not a problem, but imagine you're working with huge databases that have many foreign key relationships. Well, in that case, the load on the database can be excessive.</p></div><p></p><p>If you want to discover more about the methods we presented and some other interesting Django ORM methods like <code class="language-python">latest()</code>, <code class="language-python">earliest()</code> or <code class="language-python">in_bulk()</code>, head over to the <a href="https://docs.djangoproject.com/en/4.0/ref/models/querysets/" rel="noopener noreferrer nofollow" target="_blank">Django's official documentation page</a>.</p><h5 id="conclusion">Conclusion</h5><p>Object modification is an important part of almost every application. Now you are able not only to get information from database, but also to change it: create objects in database, update them and, if you don't need them anymore, delete, and also know some other useful methods you can use to interact with databases. It's very important knowledge which you will use really often. </p>
+</div>

@@ -1,0 +1,61 @@
+<h2>Kwargs</h2>
+<div class="step-text">
+<p>With <code class="language-python">*args</code> you can create more flexible functions that accept a varying number of <em>positional</em> arguments. You may now wonder how to do the same with <em>named</em> arguments. Fortunately, in Python, you can work with <em>keyword</em> arguments in a similar way.</p>
+<h5 id="multiple-keyword-arguments" style="text-align: center;">Multiple keyword arguments</h5>
+<p>Let's get acquainted with the <code class="language-python">**</code> operator used to pass a varying number of <a class="theory-lookup" href="/learn/step/7248" rel="noopener noreferrer nofollow" target="_blank" title="In Python, a keyword argument is a way to pass an argument to a function by specifying the parameter name along with the value. | This allows for more flexibility in assigning arguments, as the order of the arguments does not matter when using keyword arguments. Keyword arguments can be used in conjunction with positional arguments, and can make the code easier to read and follow, reducing the chance of errors and bugs. When defining a function, you can specify default values for keyword arguments, which allows the function to be called with fewer arguments than it is defined to accept.">keyword arguments</a> into a function. <code class="language-python">**kwargs</code> collects all possible extra values in a <a class="theory-lookup" href="/learn/step/6481" rel="noopener noreferrer nofollow" target="_blank" title="In Python, a dictionary is a collection of key-value pairs enclosed in curly braces `{}`. | It is similar to a real dictionary where each word (key) has a definition (value) associated with it. In the birdwatcher example, the keys are the names of the birds, and the values are the number of birds of that kind observed. In programming, dictionaries allow for fast access to objects by selecting a specific key. Python 3.7 and up maintain the insertion order of keys in a dictionary.">dictionary</a> with keywords as keys.</p>
+<p>By <a class="theory-lookup" href="/learn/step/5879" rel="noopener noreferrer nofollow" target="_blank" title="In Python, a convention is a widely accepted way of writing code that affects general readability and understandability. | These conventions are outlined in a document called PEP 8, which provides guidelines for coding style to ensure consistency across all Python projects. Conventions include things like not putting spaces around keyword arguments, the order of declared parameters and passed arguments, and using whitespace in comments. Adhering to these conventions can greatly improve the readability of your code, making it easier for other developers to understand.">convention</a>, people use special names for this kind of arguments: <code class="language-python">*args</code> for <a class="theory-lookup" href="/learn/step/7248" rel="noopener noreferrer nofollow" target="_blank" title="In Python, a positional argument is a type of argument passed to a function based on the position it holds in the function call, relative to other arguments. | The order of positional arguments is important, as they are associated with the function's parameters from left to right. This means that the first argument corresponds to the first parameter, the second argument to the second parameter, and so on. Positional arguments are also known as non-keyword arguments. They are assigned to the corresponding parameters based on their position, rather than by explicitly specifying the parameter name.">positional arguments</a> and <code class="language-python">**kwargs</code> for keyword arguments, but you can call them whatever you want. The main thing is that a <a class="theory-lookup" href="/learn/step/15401" rel="noopener noreferrer nofollow" target="_blank" title="In Python, a single asterisk is referred to as the unpacking operator. | Its purpose is to unpack all the elements of an iterable variable that has not been assigned to any variable. For instance, if you want to extract the first and the last item of a list without indexing, the single asterisk operator can be used to unpack the remaining items in the list. This operator can be used with various iterables such as lists, sets, tuples, strings, and dictionaries. It simplifies coding by automatically assigning the unused items to a variable marked by an asterisk.">single asterisk</a> <code class="language-python">*</code> matches a value by position and a double asterisk <code class="language-python">**</code> associates a value with a name, or keyword. So, <code class="language-python">**kwargs</code> differs from <code class="language-python">*args</code> in that you will need to assign keywords.</p>
+<p>Here is an example:</p>
+<pre><code class="language-python">def capital(**kwargs):
+    for key, value in kwargs.items():
+        print(value, "is the capital city of", key)
+
+
+capital(Canada="Ottawa", Estonia="Tallinn", Venezuela="Caracas", Finland="Helsinki")</code></pre>
+<p>Once the function has been invoked, these 4 lines will be printed:</p>
+<pre><code class="language-no-highlight">Ottawa is the capital city of Canada
+Tallinn is the capital city of Estonia
+Caracas is the capital city of Venezuela
+Helsinki is the capital city of Finland</code></pre>
+<p>So, everything works just fine! And again, the number of arguments we pass may differ in the next call.</p>
+<p></p>
+<div class="alert alert-primary">Note that the names in a call are without quotes. That is not a mistake. Moreover, the names should be valid, for example, you cannot start a keyword with a number. Follow the same naming rules as for variables.</div>
+<p></p>
+<p>It is also possible to combine <code class="language-python">*args</code> and <code class="language-python">**kwargs</code> in one function definition:</p>
+<pre><code class="language-python">def func(positional_args, defaults, *args, **kwargs):
+    pass</code></pre>
+<p>The order is crucial here. Just as non-keyword arguments precede keyword arguments, <code class="language-python">*args</code> must come before <code class="language-python">**kwargs</code> in this case. Otherwise, both when creating and calling a function with <code class="language-python">*args</code> and <code class="language-python">**kwargs</code> in the wrong order, a <code class="language-python">SyntaxError</code> will appear:</p>
+<pre><code class="language-python">def func(positional_args, defaults, **kwargs, *args):
+# SyntaxError: invalid syntax
+
+func(positional_args, defaults, **kwargs, *args)
+# SyntaxError: iterable argument unpacking follows keyword argument unpacking</code></pre>
+<h5 id="unpacking-in-function-calls" style="text-align: center;">Unpacking in function calls</h5>
+<p>There are two <a class="theory-lookup" href="/learn/step/8991" rel="noopener noreferrer nofollow" target="_blank" title="In Python, unpacking operator is a syntax that allows us to extract values from collections such as lists, sets, tuples, strings, dictionaries, or any iterable object. | The unpacking operator is represented by the asterisk symbol (*). There are two types of unpacking: single asterisk (*) and double-asterisk (**) operators. The single asterisk operator is used to unpack a single iterable, while the double-asterisk operator is used to unpack keyword arguments in a function call. Unpacking is useful when working with different data structures, as it allows us to iterate over them in parallel, making our code more readable and concise.">unpacking operators</a> in Python: a single asterisk <code class="language-python">*</code> unpacks elements of an <a class="theory-lookup" href="/learn/step/8479" rel="noopener noreferrer nofollow" target="_blank" title="In Python, an iterable object is a collection of data that can be looped over and its elements accessed one by one. | Iterables include common data structures such as lists, strings, and dictionaries. They implement the `__iter__()` method, which returns an iterator object that can be used to access the elements of the iterable. An iterator is an object that represents a stream of data and implements the `__next__()` method, which returns the next item of the iterable. Once an iterator has returned all the elements of an iterable, it cannot be reset or reused.">iterable object</a> and a double asterisk <code class="language-python">**</code> works with dictionaries. Let's try to get key-value pairs from a dictionary and pass them as keyword arguments using a double asterisk <code class="language-python">**</code>:</p>
+<pre><code class="language-python">def say_bye(**names):
+    for name in names:
+        print("Au revoir,", name)
+        print("See you on", names[name]["next appointment"])
+        print()
+
+
+humans = {"Laura": {"next appointment": "Tuesday"},
+          "Robin": {"next appointment": "Friday"}}
+
+say_bye(**humans)
+
+# Au revoir, Laura
+# See you on Tuesday
+# 
+# Au revoir, Robin
+# See you on Friday</code></pre>
+<p>By default, you iterate over keys in a dictionary, so be careful with this. You might need this type of unpacking when setting specific <a class="theory-lookup" href="/learn/step/5900" rel="noopener noreferrer nofollow" target="_blank" title="In Python, a parameter is a variable that is used as a placeholder in a function definition to specify an argument that the function can accept. | It is defined in the function signature and can have a default value. When a function is called, the arguments passed in the function call are assigned to the corresponding parameters. Parameters with default values will take on that default value if no argument is passed for that parameter during the function call.">parameters</a> of a function. Saving values in a dictionary and then unpacking them in this way might be much easier than listing them in each call manually. Also, it will save time when you choose to fine-tune these parameters.</p>
+<h5 id="summary" style="text-align: center;">Summary</h5>
+<p>Let's go over the main points discussed in the topic:</p>
+<ul>
+<li>If you want to work with a varying number of <strong>keyword </strong>arguments, make use of <code class="language-python">**kwargs</code>.</li>
+<li>The variable name <code class="language-python">kwargs</code> is conventional, you can always choose another one.</li>
+<li>Notice the difference: <code class="language-python">*args</code> provides access to a <strong>tuple </strong>of remaining values, while <code class="language-python">**kwargs</code> collects remaining key-value pairs in a <strong>dictionary</strong>.</li>
+<li>The order of parameters in the function definition is important, as well as the order of passed arguments.</li>
+<li>In function calls, now you can use both <strong>unpacking operators:</strong> a single asterisk <code class="language-python">*</code> for iterable objects and a double asterisk <code class="language-python">**</code> for dictionaries.</li>
+</ul>
+</div>

@@ -1,0 +1,76 @@
+<h2>Static content</h2>
+<div class="step-text">
+<p>Making your HTML pages visually appealing is essential. For that, you need to add some style to your pages using CSS or even do some programming with JavaScript. Both CSS and JavaScript run smoothly in your browser, so you only need to send these files to the user. Let's see how you can do it in a few steps with Django.</p>
+<p></p><div class="alert alert-primary">You rarely see sites serving static content (images, JavaScript, CSS) with Django because specialized tools work with it more effectively. However, you can serve content directly with Django for development or even for your pet project with only a few visitors.</div>
+<h5 id="static-files">Static files</h5>
+<p>HTML pages consist of three main parts:</p>
+<ul>
+<li>HTML layout;</li>
+<li>CSS;</li>
+<li>JavaScript code.</li>
+</ul>
+<p>Defining styles for pages in separate files is convenient to make our templates clear and easy to read. The same applies to JavaScript code. We know how to render templates, but how do we send other types of files to a client?</p>
+<p>Let's refer to an example. We keep working on John Doe's blog, and this time, we want to add some style to it. Let's define a simple CSS file with just the properties for the <code class="language-css">h2</code> elements:</p>
+<pre><code class="language-css">h2 {
+  font-size: 24px;
+  color: gray;
+}</code></pre>
+<p>We save it to the file <em>static/css/base.css</em> relative to the project's root. Also, you need to define a template in the <em>blog/templates/blog/index.html</em> file:</p>
+<pre><code class="language-html">{% load static %}
+&lt;link rel="stylesheet" href="{% static 'css/base.css' %}"&gt;
+
+&lt;h2&gt;{{ blog_name }}&lt;/h2&gt;
+&lt;div&gt;{{ post.text }}&lt;/div&gt;</code></pre>
+<p>We use the tag <code class="language-css">{% load static %}</code> to tell Django that we want to import an additional tag for the templates named <code class="language-css">static</code>. After that, we use the tag <code class="language-css">{% static 'css/base.css' %}</code> as a URL to the stylesheet for the page.</p>
+<p></p><div class="alert alert-primary">Note that we only use the <em>css/base.css</em> part for the needed stylesheet; we omit the part of the URL that matches the <code class="language-css">STATIC_URL</code> variable in the <em>settings.py</em> module.</div>
+<p>However, if you try to launch the application using this template, nothing will happen to the style of the <code class="language-css">h2</code> element. We forgot to tell Django we want to use it to serve static files! Add this to the end of your <em>settings.py</em> module:</p>
+<pre><code class="language-python">DEBUG = True
+
+STATIC_URL = "/static/"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]</code></pre>
+<p>Extend your <code class="language-css">urlpatterns</code> in the <em>urls.py</em> module:</p>
+<pre><code class="language-python">from django.conf import settings
+from django.conf.urls.static import static
+
+# your urlpatterns
+
+urlpatterns += static(settings.STATIC_URL)</code></pre>
+<p>Now, you can relaunch the application, and serving static files will work like a charm! Your <code class="language-css">h2</code> element will have gray color; if you want to change it, you may refer to the <a href="https://htmlcolorcodes.com/color-names/" rel="noopener noreferrer nofollow" target="_blank">table with other color names</a> supported by major browsers.</p>
+<h5 id="debug-mode">DEBUG mode</h5>
+<p>The restriction for serving static files with Django is that it only works in the <code class="language-css">DEBUG</code> mode. This is insecure and not suitable for production because when <code class="language-css">DEBUG</code> is enabled, Django provides detailed error information, stack traces, and other debugging data that can be helpful for developers during debugging and testing. However, this also means that this information can be accessible to potential attackers who can launch attacks on your system or disclose sensitive data. Also, enabling debug mode can slow down your application and reduce its performance.</p>
+<p>In a development environment, it is common to have <code class="language-css">DEBUG=True</code>. This allows for easier testing and debugging as detailed error messages and stack traces are displayed. Developers can quickly identify and resolve issues during the development phase.</p>
+<p>For QA (Quality Assurance) testing, the <code class="language-css">DEBUG</code> setting can be either <code class="language-css">True</code> or <code class="language-css">False</code>, depending on the desired testing conditions. If you want to replicate a production-like environment and thoroughly test your application, it is recommended to set <code class="language-css">DEBUG=False</code>. This ensures that your application behaves as it would in a production environment, where detailed error information is not exposed to users.</p>
+<p>In a production environment, it is crucial to set <code class="language-css">DEBUG=False</code>. This disables the detailed error messages and stack traces from being shown to users, enhancing security and protecting sensitive information. However, upon setting <code class="language-css">DEBUG=False</code>, it's important to configure the <code class="language-css">ALLOWED_HOSTS</code> setting correctly. The <code class="language-css">ALLOWED_HOSTS</code> setting specifies the list of valid hostnames that can access your application, and it helps prevent unauthorized access to your production environment when your application is launched on a public server and is accessible from the Internet.</p>
+<p>Since we cannot serve static files with Django in production, we need a way to tell the web server where to serve static files from. The files can be moved manually, but since it's such a typical operation, Django offers a mechanism called <code class="language-css">collectstatic</code> to manage static files in a production environment efficiently. When developing a Django application, you typically store static files such as CSS, JavaScript, and images in a specific directory within the project. However, when deploying the application, it's recommended to use the <code class="language-css">collectstatic</code> command.</p>
+<p>The <code class="language-css">collectstatic</code> command gathers all static files from various sources into a single directory, which can be configured in the project settings. This allows for centralized management and servicing of static files and utilizing different compression, minification, or caching tools to optimize their usage.</p>
+<p>By separating the static file serving responsibility from Django and configuring your web server to serve these files directly, you enhance the security and performance of your application. Secure static file access is crucial to protect sensitive data and prevent unauthorized access. </p>
+<h5 id="media-files">Media files</h5>
+<p>Apart from HTML, a page may contain media files like images, videos, and audio files. To keep these files, we use the media folder on the server. It usually includes all users' media content we keep on the server. Adding this path to your project is no more complex than using static files.</p>
+<p>First, we modify our <em>settings.py</em> module:</p>
+<pre><code class="language-python">DEBUG = True
+
+TEMPLATES[0]['OPTIONS']['context_processors'].append(
+    'django.template.context_processors.media'
+)
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")</code></pre>
+<p>Then, extend <code class="language-css">urlpatterns</code>:</p>
+<pre><code class="language-python">from django.conf import settings
+from django.conf.urls.static import static
+
+# your urlpatterns
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)</code></pre>
+<p>Now, create the <em>media</em> folder in the project root and place a picture with the name <em>media/avatar.jpg</em>. Finally, save the new content in your template:</p>
+<pre><code class="language-html">&lt;h2&gt;{{ blog_name }}&lt;/h2&gt;
+
+&lt;div&gt;Here am I&lt;/div&gt;
+&lt;img src="{{ MEDIA_URL }}/avatar.jpg" alt="avatar"&gt;
+
+&lt;div&gt;{{ post.text }}&lt;/div&gt;</code></pre>
+<p>That's all! The blog has a nice profile picture of John Doe on the page.</p>
+<h5 id="conclusion">Conclusion</h5>
+<p>Django provides tools to cover the development process of a site, including serving static and media files. However, it can only be used in debug mode, making it a starting point. To serve static files, configure settings and URL patterns, and add links to content in templates.</p>
+<p></p><div class="alert alert-primary">While using debug mode in production comes with some risks, in some specific cases, it's completely normal. Django provides the ability to work with static files in development and production.</div>
+</div>

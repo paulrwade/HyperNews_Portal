@@ -1,0 +1,18 @@
+type: choice
+is_multiple_choice: false
+options:
+  - text: "<code>{{ drinks.Customer.count }}</code>"
+  - text: "<code>{{ drinks.ordered_by.all }}</code>"
+  - text: "<code>{{ drinks.Customer.all }}</code>"
+  - text: "<code>{{ drinks.ordered_by.count }}</code>"
+files:
+  - name: main.py
+    visible: true
+    text: |+
+      #  You can experiment here, it won’t be checked
+    
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/31415#comment
+status: Solved
+record: -1
+local_check: false

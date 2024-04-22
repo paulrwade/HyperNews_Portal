@@ -1,0 +1,29 @@
+type: matching
+captions:
+  - <code>Model.objects.all()</code>
+  - <code>Model.objects.filter(name='Evelyn')</code>
+  - <code>Model.objects.exclude(name='Evelyn')</code>
+  - <code>Model.objects.order_by('popularity')</code>
+  - "<code>Model.objects.create(name='Jane', age=23, popularity=9)</code>"
+options:
+  - "<code>INSERT INTO Model VALUES ('Jane', '23', '9');</code>"
+  - <code>SELECT * FROM Model;</code>
+  - <code>SELECT * FROM Model ORDER BY popularity;</code>
+  - <code>SELECT * FROM Model WHERE name='Evelyn';</code>
+  - <code>SELECT * FROM Model WHERE NOT name='Evelyn';</code>
+files:
+  - name: main.py
+    visible: true
+    text: |+
+      #  You can experiment here, it won’t be checked
+    
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/26488#comment
+status: Solved
+record: -1
+ordering:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4

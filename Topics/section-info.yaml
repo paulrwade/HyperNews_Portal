@@ -1,0 +1,10 @@
+content:
+  - Inheritance in Python
+  - Kwargs
+  - Django ORM
+  - Queries and filters
+  - Tuple
+  - Object modification with ORM
+  - Static content
+  - Rendering templates
+  - Using models with templates

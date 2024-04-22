@@ -1,0 +1,21 @@
+type: code
+files:
+  - name: main.py
+    visible: true
+    highlight_level: NONE
+    text: |-
+      template = """
+      <html>
+        <ul>
+          ???
+        </ul>
+      </html>
+      """
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/7645#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Mon, 22 Apr 2024 20:54:55 UTC"
+record: -1
+submission_language: python3

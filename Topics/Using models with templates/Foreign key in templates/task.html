@@ -1,0 +1,11 @@
+<h2>Foreign key in templates</h2>
+<div class="step-text">
+<p></p>
+<p>We have the <code class="language-python">Drink</code> model with the following fields: <code class="language-python">brand</code>, <code class="language-python">taste</code> and <code class="language-python">ordered_by</code>:</p>
+<pre><code class="language-python">class Drink(models.Model):
+    brand = models.CharField(max_length=32)
+    taste = models.CharField(max_length=32)
+    ordered_by = models.ManyToManyField(Customer, related_name='customers')</code></pre>
+<p>We pass a <code class="language-python">QuerySet</code> with drinks to a template in context dictionary: <code class="language-python">{'drinks': ...}</code>.</p>
+<p>What should we add to our template to show how many customers ordered a certain brand? </p>
+</div>
