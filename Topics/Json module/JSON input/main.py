@@ -1,4 +1,9 @@
 import json
 
 
-# write your code here
+json_string = input()
+
+data = json.loads(json_string)
+
+print(type(data))
+print(data)
