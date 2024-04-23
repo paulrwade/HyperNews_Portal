@@ -1,0 +1,1 @@
+# read sample.txt and print the number of lines

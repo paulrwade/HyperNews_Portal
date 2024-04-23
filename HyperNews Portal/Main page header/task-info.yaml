@@ -798,15 +798,12 @@ files:
   - name: hypernews/news.json
     visible: true
     learner_created: true
-  - name: db.test.sqlite3
-    visible: true
-    learner_created: true
   - name: news/migrations/0001_initial.py
     visible: true
     learner_created: true
-feedback_link: https://hyperskill.org/projects/102/stages/561/implement#comment
+feedback_link: https://hyperskill.org/learn/step/9411#comment
 status: Solved
 feedback:
   message: Congratulations!
   time: "Mon, 22 Apr 2024 21:59:51 UTC"
-record: -1
+record: 2
