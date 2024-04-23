@@ -791,10 +791,6 @@ files:
   - name: news/urls.py
     visible: true
     learner_created: true
-  - name: db.sqlite3
-    visible: true
-    is_binary: true
-    learner_created: true
   - name: news/migrations/0001_initial.py
     visible: true
     learner_created: true
@@ -806,4 +802,4 @@ files:
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9412#comment
 status: Unchecked
-record: -1
+record: 4

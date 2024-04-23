@@ -1,5 +1,7 @@
 from django.views import generic
 from .models import News
+from django.conf import settings
+import json
 
 
 class IndexView(generic.ListView):

@@ -791,10 +791,6 @@ files:
   - name: news/urls.py
     visible: true
     learner_created: true
-  - name: db.sqlite3
-    visible: true
-    is_binary: true
-    learner_created: true
   - name: hypernews/news.json
     visible: true
     learner_created: true
