@@ -13,6 +13,9 @@ files:
       # convert years to JSON string
     learner_created: false
 feedback_link: https://hyperskill.org/learn/step/9003#comment
-status: Failed
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Tue, 23 Apr 2024 21:32:29 UTC"
 record: -1
 submission_language: python3

@@ -1,0 +1,35 @@
+type: matching
+captions:
+  - <code>dict</code>
+  - "<code>list</code>,\_<code>tuple</code>"
+  - <code>str</code>
+  - "<code>int</code>,\_<code>float</code>"
+  - <code>True</code>
+  - <code>False</code>
+  - <code>None</code>
+options:
+  - "false"
+  - object
+  - string
+  - "null"
+  - "true"
+  - number
+  - array
+files:
+  - name: main.py
+    visible: true
+    text: |+
+      #  You can experiment here, it won’t be checked
+    
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/15484#comment
+status: Solved
+record: -1
+ordering:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+  - 6
