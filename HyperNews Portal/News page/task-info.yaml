@@ -800,6 +800,35 @@ files:
   - name: hypernews/news.json
     visible: true
     learner_created: true
+  - name: db.sqlite3
+    visible: true
+    is_binary: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9412#comment
-status: Unchecked
+status: Failed
+feedback:
+  message: |-
+    Wrong answer in test #2
+
+    Cannot connect to the news page at http://localhost:8000/news/"link"/ where "link" is the data of the link field from json file
+
+    Please find below the output of your program during this failed test.
+
+    ---
+
+    stdout:
+    Performing system checks...
+
+    System check identified no issues (0 silenced).
+    April 23, 2024 - 22:24:00
+    Django version 4.1.1, using settings 'hypernews.settings'
+    Starting development server at http://127.0.0.1:8000/
+    Quit the server with CONTROL-C.
+
+    stderr:
+    [23/Apr/2024 22:24:00] "GET / HTTP/1.1" 200 129
+    [23/Apr/2024 22:24:00] "GET / HTTP/1.1" 200 129
+    Not Found: /news/9234732/
+    [23/Apr/2024 22:24:00] "GET /news/9234732/ HTTP/1.1" 404 2286
+  time: "Tue, 23 Apr 2024 22:24:00 UTC"
 record: 4
