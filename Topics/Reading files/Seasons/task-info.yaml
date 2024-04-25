@@ -13,7 +13,6 @@ files:
         selected: false
         status: Solved
         is_visible: false
-    text: type your solution here
     learner_created: false
 feedback_link: https://hyperskill.org/learn/step/8700#comment
 status: Solved

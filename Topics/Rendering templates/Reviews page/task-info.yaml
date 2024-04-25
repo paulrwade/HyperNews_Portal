@@ -3,16 +3,6 @@ files:
   - name: main.py
     visible: true
     highlight_level: NONE
-    text: |-
-      from django.shortcuts import render
-      from django.views import View
-      
-      
-      class ReviewView(View):
-          reviews = ['That book was supercalifragilisticexpialidocious', 'It was a ok, I guess']
-      
-          def get(self, request, *args, **kwargs):
-              ...
     learner_created: false
 feedback_link: https://hyperskill.org/learn/step/8759#comment
 status: Solved

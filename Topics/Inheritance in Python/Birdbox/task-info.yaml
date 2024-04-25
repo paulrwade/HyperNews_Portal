@@ -3,7 +3,6 @@ files:
   - name: main.py
     visible: true
     highlight_level: NONE
-    text: '# create your classes here'
     learner_created: false
 feedback_link: https://hyperskill.org/learn/step/7242#comment
 status: Solved

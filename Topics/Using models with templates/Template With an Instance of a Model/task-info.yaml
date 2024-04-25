@@ -3,13 +3,6 @@ files:
   - name: main.py
     visible: true
     highlight_level: NONE
-    text: |-
-      template = """
-      <html>
-        <h2> </h2>
-        <div> </div>
-      </html>
-      """
     learner_created: false
 feedback_link: https://hyperskill.org/learn/step/7643#comment
 status: Solved

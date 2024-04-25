@@ -3,7 +3,6 @@ files:
   - name: main.py
     visible: true
     highlight_level: NONE
-    text: red_fast_cars = ...
     learner_created: false
 feedback_link: https://hyperskill.org/learn/step/25370#comment
 status: Solved

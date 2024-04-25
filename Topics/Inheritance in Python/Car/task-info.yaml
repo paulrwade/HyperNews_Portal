@@ -3,18 +3,6 @@ files:
   - name: main.py
     visible: true
     highlight_level: NONE
-    text: |-
-      class Car:
-          def __init__(self, model, color):
-              self.model = model
-              self.color = color
-      
-      
-      class Tesla(Car):
-          pass
-      
-      
-      # create an instance of Tesla
     learner_created: false
 feedback_link: https://hyperskill.org/learn/step/7240#comment
 status: Solved

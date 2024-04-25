@@ -3,11 +3,6 @@ files:
   - name: main.py
     visible: true
     highlight_level: NONE
-    text: |-
-      beatles_albums = ...
-      create_nirvana = ..
-      artists_exclude_nirvana = ...
-      del_smashing_pumpkins = ...
     learner_created: false
 feedback_link: https://hyperskill.org/learn/step/26490#comment
 status: Solved

@@ -3,7 +3,6 @@ files:
   - name: main.py
     visible: true
     highlight_level: NONE
-    text: "INSTALLED_APPS = [...]"
     learner_created: false
 feedback_link: https://hyperskill.org/learn/step/27528#comment
 status: Solved
