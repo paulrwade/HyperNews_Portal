@@ -1,3 +1,4 @@
+import requests
 from django.shortcuts import render
 from django.views import generic
 from .models import News
@@ -6,17 +7,20 @@ import json
 
 
 class IndexView(generic.ListView):
+
     template_name = 'news/index.html'
+
     context_object_name = 'news'
 
     def get_queryset(self):
         return News.objects.all()
 
 
-def article(request, link):
+class ArticleView(generic.ListView):
 
-    # ...
-    list_item = News.objects.get(link=link)
+    template_name = 'news/article_details.html'
 
-    if list_item['link'] == link:
-        return render(request, 'list_item_page.html', list_item)
+    context_object_name = 'news'
+
+    def get_queryset(self):
+        return News.objects.all()
