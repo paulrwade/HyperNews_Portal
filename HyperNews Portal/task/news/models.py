@@ -6,4 +6,3 @@ class News(models.Model):
     text = models.TextField()
     title = models.CharField(max_length=128)
     link = models.IntegerField(default=0)
-
