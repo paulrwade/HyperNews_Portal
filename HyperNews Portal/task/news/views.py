@@ -8,8 +8,8 @@ from .models import News
 
 class IndexView(generic.ListView):
 
-	template_name = 'news/news_item_list.html.html'
-	context_object_name = 'news_item_list.html'
+	template_name = 'news/index.html'
+	context_object_name = 'news'
 	queryset = News.objects.all()
 
 	def get_queryset(self):
@@ -18,8 +18,8 @@ class IndexView(generic.ListView):
 
 class NewsItemListView(generic.ListView):
 
-	template_name = 'news/news_item_list.html.html'
-	context_object_name = 'articles'
+	template_name = 'news/news_item_list.html'
+	context_object_name = 'news_list'
 	queryset = News.objects.all()
 
 	def get_queryset(self):
@@ -28,7 +28,7 @@ class NewsItemListView(generic.ListView):
 
 class NewsItemDetailView(generic.ListView):
 	template_name = 'news/news_item_details.html'
-	context_object_name = 'article'
+	context_object_name = 'news_item'
 	queryset = News.objects.all()
 
 	def get_queryset(self):
