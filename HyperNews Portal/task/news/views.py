@@ -1,60 +1,42 @@
 from django.views import generic
+from django.shortcuts import render
 from .models import News
 # from datetime import timezone
 # from os import link
-# from django.shortcuts import render
 # import json
 
 
 class IndexView(generic.ListView):
 
 	template_name = 'news/index.html'
-	context_object_name = 'news'
-	queryset = News.objects.all()
+#	context_object_name = 'news'
 
 	def get_queryset(self):
-		return self.queryset
+		return render(self.request, self.template_name)
 
 
 class NewsItemListView(generic.ListView):
 
 	template_name = 'news/news_item_list.html'
 	context_object_name = 'news_list'
-	queryset = News.objects.all()
 
 	def get_queryset(self):
-		return self.queryset
+		context = {'news_list': News.objects.all()}
+		return render(self.request, self.template_name, context)
 
 
 class NewsItemDetailView(generic.ListView):
+
 	template_name = 'news/news_item_details.html'
 	context_object_name = 'news_item'
-	queryset = News.objects.all()
 
 	def get_queryset(self):
 
 		link = self.kwargs.get('link')
+		context = {'news_item': News.objects.all()}
 
-		return self.queryset.filter(link=link)
+		return render(self.request, self.template_name, context)
 
-# def index(request):
-#     news = News.objects.all()
-#     context = {'news': news}
-#     return render(request, 'news/news_item_list.html.html', context)
-#
-#
-# def news_item_list.html(request):
-#     news = News.objects.all()
-#     context = {'news': news}
-#     return render(request, 'news/news_item_list.html.html', context)
-#
-#
-# def article_detail(request, link):
-#     news = News.objects.filter(link=link)
-#     context = {'news': news}
-#     return render(request, 'news/news_item_details.html', context)
-#
-#
 # class IndexView(generic.ListView):
 #
 #     template_name = 'news/news_item_list.html.html'
