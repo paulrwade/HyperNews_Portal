@@ -1,15 +1,12 @@
-import requests
-from django.shortcuts import render
 from django.views import generic
+from django.shortcuts import render
 from .models import News
-from django.conf import settings
 import json
 
 
 class IndexView(generic.ListView):
 
     template_name = 'news/index.html'
-
     context_object_name = 'news'
 
     def get_queryset(self):
@@ -18,9 +15,15 @@ class IndexView(generic.ListView):
 
 class ArticleView(generic.ListView):
 
-    template_name = 'news/article_details.html'
+    def get_queryset(self, *args, **kwargs):
 
-    context_object_name = 'news'
+        link = self.kwargs.get('link')
 
-    def get_queryset(self):
-        return News.objects.all()
+        with (open("/Users/paulwade/Documents/GitHub/HyperNews_Portal/HyperNews Portal/task/news/news.json", "r")
+              as json_file):
+
+            news_dict_from_json = json.load(json_file)
+
+            for this_article in news_dict_from_json:
+                if this_article['link'] == link:
+                    return render(self.request, template_name='news/article.html', context={'article': this_article})
