@@ -8,33 +8,45 @@ from .models import News
 
 class IndexView(generic.ListView):
 
-	template_name = 'news/article_list.html'
-	context_object_name = 'article_list'
+	template_name = 'news/article_list.html.html'
+	context_object_name = 'article_list.html'
+	queryset = News.objects.all()
 
 	def get_queryset(self):
-		return News.objects.all()
+		return self.queryset
+
+
+class ArticleListView(generic.ListView):
+
+	template_name = 'news/article_list.html.html'
+	context_object_name = 'articles'
+	queryset = News.objects.all()
+
+	def get_queryset(self):
+		return self.queryset
 
 
 class ArticleDetailView(generic.ListView):
 	template_name = 'news/article_details.html'
 	context_object_name = 'article'
+	queryset = News.objects.all()
 
 	def get_queryset(self):
 
 		link = self.kwargs.get('link')
 
-		return News.objects.all().filter(link=link)
+		return self.queryset.filter(link=link)
 
 # def index(request):
 #     news = News.objects.all()
 #     context = {'news': news}
-#     return render(request, 'news/article_list.html', context)
+#     return render(request, 'news/article_list.html.html', context)
 #
 #
-# def article_list(request):
+# def article_list.html(request):
 #     news = News.objects.all()
 #     context = {'news': news}
-#     return render(request, 'news/article_list.html', context)
+#     return render(request, 'news/article_list.html.html', context)
 #
 #
 # def article_detail(request, link):
@@ -45,7 +57,7 @@ class ArticleDetailView(generic.ListView):
 #
 # class IndexView(generic.ListView):
 #
-#     template_name = 'news/article_list.html'
+#     template_name = 'news/article_list.html.html'
 #
 #     def get_queryset(self):
 #         return render(self.request, self.template_name)
