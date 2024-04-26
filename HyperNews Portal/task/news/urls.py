@@ -3,6 +3,6 @@ from .views import IndexView, ArticleDetailView
 
 
 urlpatterns = [
-	path("news/<int:pk>/", ArticleDetailView.as_view(), name="article_details"),
-	path("", IndexView.as_view(), name="index"),
+	path('news/<int:pk>/', ArticleDetailView.as_view(), name='article'),
+	path('', IndexView.as_view(), name='index'),
 ]
