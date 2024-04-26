@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Article Details</title>
+    <title>List of News Items</title>
 </head>
 <body>
-    <h2>List of Articles</h2>
+    <h2>List of News Items</h2>
     <UL>
-        {% for article in articles %}
-        <LI><a href="/news/{link}/">Article # {{news_item_list.link}}</a></LI>
+        {% for news_item in news_item_list %}
+        <LI><a href="/news/{{news_item.link%}}">Article # {{news_item.link}}</a></LI>
         {% endfor %}
     </UL>
 </body>
