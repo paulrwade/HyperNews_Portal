@@ -13,5 +13,5 @@ class News(models.Model):
     class Meta:
         ordering = ['title', 'created']
 
-    def __str__(self):
+    def __str__(self, *args, **kwargs):
         return f'{self.title}, {self.created}, {self.text}, {self.link}'

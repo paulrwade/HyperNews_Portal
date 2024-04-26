@@ -79,6 +79,9 @@ files:
   - name: news/migrations/0003_alter_news_options_alter_news_created.py
     visible: true
     learner_created: true
+  - name: news/templates/news/index.html
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9412#comment
 status: Failed
 feedback:
