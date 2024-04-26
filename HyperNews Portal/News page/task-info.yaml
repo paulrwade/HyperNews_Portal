@@ -61,7 +61,7 @@ files:
     visible: true
     is_binary: true
     learner_created: true
-  - name: news/templates/news/article_details.html
+  - name: news/templates/news/news_item_details.html
     visible: true
     learner_created: true
   - name: news/news.json
@@ -79,7 +79,7 @@ files:
   - name: news/templates/news/index.html
     visible: true
     learner_created: true
-  - name: news/templates/news/article_list.html
+  - name: news/templates/news/news_item_list.html
     visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9412#comment

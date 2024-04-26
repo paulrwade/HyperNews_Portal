@@ -8,17 +8,17 @@ from .models import News
 
 class IndexView(generic.ListView):
 
-	template_name = 'news/article_list.html.html'
-	context_object_name = 'article_list.html'
+	template_name = 'news/news_item_list.html.html'
+	context_object_name = 'news_item_list.html'
 	queryset = News.objects.all()
 
 	def get_queryset(self):
 		return self.queryset
 
 
-class ArticleListView(generic.ListView):
+class NewsItemListView(generic.ListView):
 
-	template_name = 'news/article_list.html.html'
+	template_name = 'news/news_item_list.html.html'
 	context_object_name = 'articles'
 	queryset = News.objects.all()
 
@@ -26,8 +26,8 @@ class ArticleListView(generic.ListView):
 		return self.queryset
 
 
-class ArticleDetailView(generic.ListView):
-	template_name = 'news/article_details.html'
+class NewsItemDetailView(generic.ListView):
+	template_name = 'news/news_item_details.html'
 	context_object_name = 'article'
 	queryset = News.objects.all()
 
@@ -40,24 +40,24 @@ class ArticleDetailView(generic.ListView):
 # def index(request):
 #     news = News.objects.all()
 #     context = {'news': news}
-#     return render(request, 'news/article_list.html.html', context)
+#     return render(request, 'news/news_item_list.html.html', context)
 #
 #
-# def article_list.html(request):
+# def news_item_list.html(request):
 #     news = News.objects.all()
 #     context = {'news': news}
-#     return render(request, 'news/article_list.html.html', context)
+#     return render(request, 'news/news_item_list.html.html', context)
 #
 #
 # def article_detail(request, link):
 #     news = News.objects.filter(link=link)
 #     context = {'news': news}
-#     return render(request, 'news/article_details.html', context)
+#     return render(request, 'news/news_item_details.html', context)
 #
 #
 # class IndexView(generic.ListView):
 #
-#     template_name = 'news/article_list.html.html'
+#     template_name = 'news/news_item_list.html.html'
 #
 #     def get_queryset(self):
 #         return render(self.request, self.template_name)
@@ -67,7 +67,7 @@ class ArticleDetailView(generic.ListView):
 #
 #     model = News
 #
-#     template_name = 'news/article_details.html'
+#     template_name = 'news/news_item_details.html'
 #
 #     context = {'title': 'title text here',
 #                'text': 'article text here',
