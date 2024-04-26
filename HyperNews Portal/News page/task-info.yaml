@@ -54,7 +54,7 @@ files:
   - name: news/migrations/0001_initial.py
     visible: true
     learner_created: true
-  - name: news/templates/news/index.html
+  - name: news/templates/news/article_list.html
     visible: true
     learner_created: true
   - name: hypernews/news.json
@@ -71,6 +71,9 @@ files:
     visible: true
     learner_created: true
   - name: db.test.sqlite3
+    visible: true
+    learner_created: true
+  - name: news/migrations/0002_news_created_news_link.py
     visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9412#comment

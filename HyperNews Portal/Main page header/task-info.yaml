@@ -48,7 +48,7 @@ files:
   - name: tests.py
     visible: false
     learner_created: false
-  - name: news/templates/news/index.html
+  - name: news/templates/news/article_list.html
     visible: true
     learner_created: true
   - name: news/urls.py
@@ -58,6 +58,9 @@ files:
     visible: true
     learner_created: true
   - name: news/migrations/0001_initial.py
+    visible: true
+    learner_created: true
+  - name: news/templates/news/coming_soon.html
     visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9411#comment
