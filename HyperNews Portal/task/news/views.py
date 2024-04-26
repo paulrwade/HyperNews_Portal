@@ -16,8 +16,8 @@ def article_list(request):
     return render(request, 'news/article_list.html', context)
 
 
-def article_detail(request, article_id):
-    news = News.objects.get(pk=article_id)
+def article_detail(request, link):
+    news = News.objects.get(link=link)
     context = {'news': news}
     return render(request, 'news/article_details.html', context)
 
