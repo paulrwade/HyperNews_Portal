@@ -1,15 +1,11 @@
 from django.views import generic
 from django.shortcuts import render
 from .models import News
-# from datetime import timezone
-# from os import link
-# import json
 
 
 class IndexView(generic.ListView):
 
 	template_name = 'news/index.html'
-#	context_object_name = 'news'
 
 	def get_queryset(self):
 
