@@ -70,6 +70,9 @@ files:
   - name: news/news.json
     visible: true
     learner_created: true
+  - name: db.test.sqlite3
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9412#comment
 status: Failed
 feedback:
