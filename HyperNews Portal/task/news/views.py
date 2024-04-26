@@ -12,16 +12,19 @@ class IndexView(generic.ListView):
 #	context_object_name = 'news'
 
 	def get_queryset(self):
+
 		return render(self.request, self.template_name)
 
 
 class NewsItemListView(generic.ListView):
 
 	template_name = 'news/news_item_list.html'
-	context_object_name = 'news_list'
+	context_object_name = 'news_item_list'
 
 	def get_queryset(self):
-		context = {'news_list': News.objects.all()}
+
+		context = {'news_item_list': News.objects.all()}
+
 		return render(self.request, self.template_name, context)
 
 
@@ -33,7 +36,8 @@ class NewsItemDetailView(generic.ListView):
 	def get_queryset(self):
 
 		link = self.kwargs.get('link')
-		context = {'news_item': News.objects.all()}
+
+		context = {'news_item': News.objects.all().filter(link=link)}
 
 		return render(self.request, self.template_name, context)
 

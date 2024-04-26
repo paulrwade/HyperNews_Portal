@@ -10,7 +10,7 @@ class News(models.Model):
     title = models.CharField(max_length=128)
     link = models.IntegerField(default=0)
 
-    class Meta:
+    class META:
         ordering = ['title', 'created']
 
     def __str__(self, *args, **kwargs):
