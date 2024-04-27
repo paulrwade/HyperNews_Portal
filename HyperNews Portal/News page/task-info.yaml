@@ -85,69 +85,29 @@ files:
   - name: news/templates/news/news_item_list.html
     visible: true
     learner_created: true
-  - name: hypernews/index.html
-    visible: true
-    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9412#comment
 status: Failed
 feedback:
   message: |-
-    Exception in test #1
+    Wrong answer in test #1
 
-    Traceback (most recent call last):
-      File "Documents/GitHub/HyperNews_Portal/HyperNews Portal/task/manage.py", line 21, in <module>
-        main()
-      File "Documents/GitHub/HyperNews_Portal/HyperNews Portal/task/manage.py", line 17, in main
-        execute_from_command_line(sys.argv)
-      File "venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 446, in execute_from_command_line
-        utility.execute()
-      File "venv/lib/python3.12/site-packages/django/core/management/__init__.py", line 440, in execute
-        self.fetch_command(subcommand).run_from_argv(self.argv)
-      File "venv/lib/python3.12/site-packages/django/core/management/base.py", line 402, in run_from_argv
-        self.execute(*args, **cmd_options)
-      File "venv/lib/python3.12/site-packages/django/core/management/base.py", line 448, in execute
-        output = self.handle(*args, **options)
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      File "venv/lib/python3.12/site-packages/django/core/management/base.py", line 96, in wrapped
-        res = handle_func(*args, **kwargs)
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      File "venv/lib/python3.12/site-packages/django/core/management/commands/migrate.py", line 97, in handle
-        self.check(databases=[database])
-      File "venv/lib/python3.12/site-packages/django/core/management/base.py", line 475, in check
-        all_issues = checks.run_checks(
-                     ^^^^^^^^^^^^^^^^^^
-      File "venv/lib/python3.12/site-packages/django/core/checks/registry.py", line 88, in run_checks
-        new_errors = check(app_configs=app_configs, databases=databases)
-                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      File "venv/lib/python3.12/site-packages/django/core/checks/urls.py", line 14, in check_url_config
-        return check_resolver(resolver)
-               ^^^^^^^^^^^^^^^^^^^^^^^^
-      File "venv/lib/python3.12/site-packages/django/core/checks/urls.py", line 24, in check_resolver
-        return check_method()
-               ^^^^^^^^^^^^^^
-      File "venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 494, in check
-        for pattern in self.url_patterns:
-                       ^^^^^^^^^^^^^^^^^
-      File "venv/lib/python3.12/site-packages/django/utils/functional.py", line 57, in __get__
-        res = instance.__dict__[self.name] = self.func(instance)
-                                             ^^^^^^^^^^^^^^^^^^^
-      File "venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 715, in url_patterns
-        patterns = getattr(self.urlconf_module, "urlpatterns", self.urlconf_module)
-                           ^^^^^^^^^^^^^^^^^^^
-      File "venv/lib/python3.12/site-packages/django/utils/functional.py", line 57, in __get__
-        res = instance.__dict__[self.name] = self.func(instance)
-                                             ^^^^^^^^^^^^^^^^^^^
-      File "venv/lib/python3.12/site-packages/django/urls/resolvers.py", line 708, in urlconf_module
-        return import_module(self.urlconf_name)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      File "Documents/GitHub/HyperNews_Portal/HyperNews Portal/task/hypernews/urls.py", line 22, in <module>
-        path('', include('news.urls')),
-                 ^^^^^^^^^^^^^^^^^^^^
-      File "venv/lib/python3.12/site-packages/django/urls/conf.py", line 38, in include
-        urlconf_module = import_module(urlconf_module)
-                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      File "Documents/GitHub/HyperNews_Portal/HyperNews Portal/task/news/urls.py", line 2, in <module>
-        from views import IndexView, ArticleView
-    ModuleNotFoundError: No module named 'views'
-  time: "Fri, 26 Apr 2024 03:29:56 UTC"
+    "Coming soon" page (http://localhost:8001/) should contain "Coming soon" text
+
+    Please find below the output of your program during this failed test.
+
+    ---
+
+    stdout:
+    Performing system checks...
+
+    System check identified no issues (0 silenced).
+    April 27, 2024 - 00:40:02
+    Django version 4.1.1, using settings 'hypernews.settings'
+    Starting development server at http://127.0.0.1:8001/
+    Quit the server with CONTROL-C.
+
+    stderr:
+    [27/Apr/2024 00:40:03] "GET / HTTP/1.1" 200 319
+    [27/Apr/2024 00:40:03] "GET / HTTP/1.1" 200 319
+  time: "Sat, 27 Apr 2024 00:40:03 UTC"
 record: 4

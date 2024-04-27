@@ -11,11 +11,10 @@ class IndexView(generic.ListView):
 
 
 class NewsItemListView(generic.ListView):
-
-	model = News
 	template_name = 'news/news_item_list.html'
+	context_object_name = 'news_item_list'
 
-	def get_queryset(self):
+	def get_queryset(self, *args, **kwargs):
 		return News.objects.all()
 
 
@@ -23,11 +22,14 @@ class NewsItemDetailView(generic.ListView):
 	template_name = 'news/news_item_details.html'
 	context_object_name = 'news_item'
 
-	def get_context_data(self, **kwargs):
+	def get_queryset(self, *args, **kwargs):
 		link = self.kwargs.get('link')
-		context = News.objects.all().filter(link=link)
-		return context
+		return News.objects.get(link=link)
 
+	# def get_context_data(self, **kwargs):
+	# 	link = self.kwargs.get('link')
+	# 	context = News.objects.all().filter(link=link)
+	# 	return context
 # class IndexView(generic.ListView):
 #
 #     template_name = 'news/news_item_list_old.html.html'
