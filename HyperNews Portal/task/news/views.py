@@ -4,42 +4,33 @@ from .models import News
 
 
 class IndexView(generic.ListView):
-
 	template_name = 'news/index.html'
 
 	def get_queryset(self):
-
-		return render(self.request, self.template_name)
+		return None
 
 
 class NewsItemListView(generic.ListView):
 
+	model = News
 	template_name = 'news/news_item_list.html'
-	context_object_name = 'news_item_list'
 
 	def get_queryset(self):
-
-		context = {'news_item_list': News.objects.all()}
-
-		return render(self.request, self.template_name, context)
+		return News.objects.all()
 
 
 class NewsItemDetailView(generic.ListView):
-
 	template_name = 'news/news_item_details.html'
 	context_object_name = 'news_item'
 
-	def get_queryset(self):
-
+	def get_context_data(self, **kwargs):
 		link = self.kwargs.get('link')
-
-		context = {'news_item': News.objects.all().filter(link=link)}
-
-		return render(self.request, self.template_name, context)
+		context = News.objects.all().filter(link=link)
+		return context
 
 # class IndexView(generic.ListView):
 #
-#     template_name = 'news/news_item_list.html.html'
+#     template_name = 'news/news_item_list_old.html.html'
 #
 #     def get_queryset(self):
 #         return render(self.request, self.template_name)
