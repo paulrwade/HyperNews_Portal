@@ -79,13 +79,13 @@ files:
   - name: news/templates/news/index.html
     visible: true
     learner_created: true
-  - name: news/templates/news/news_item_list_old.html
-    visible: true
-    learner_created: true
   - name: news/migrations/0004_alter_news_options.py
     visible: true
     learner_created: true
   - name: news/templates/news/news_item_list.html
+    visible: true
+    learner_created: true
+  - name: hypernews/index.html
     visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9412#comment
