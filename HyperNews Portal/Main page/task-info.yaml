@@ -48,6 +48,40 @@ files:
   - name: tests.py
     visible: false
     learner_created: false
+  - name: news/templates/news/index.html
+    visible: true
+    learner_created: true
+  - name: news/news.json
+    visible: true
+    learner_created: true
+  - name: news/urls.py
+    visible: true
+    learner_created: true
+  - name: db.sqlite3
+    visible: true
+    is_binary: true
+    learner_created: true
+  - name: news/migrations/0003_alter_news_options_alter_news_created.py
+    visible: true
+    learner_created: true
+  - name: news/migrations/0001_initial.py
+    visible: true
+    learner_created: true
+  - name: news/migrations/0004_alter_news_options.py
+    visible: true
+    learner_created: true
+  - name: hypernews/news.json
+    visible: true
+    learner_created: true
+  - name: news/templates/news/news_item_list.html
+    visible: true
+    learner_created: true
+  - name: news/migrations/0002_news_created_news_link.py
+    visible: true
+    learner_created: true
+  - name: news/templates/news/news_item_details.html
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9413#comment
 status: Unchecked
 record: -1
