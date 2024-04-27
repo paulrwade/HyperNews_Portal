@@ -83,33 +83,8 @@ files:
     visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9412#comment
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Wrong answer in test #3
-
-    News page should contain <a> element with href /news/
-
-    Please find below the output of your program during this failed test.
-
-    ---
-
-    stdout:
-    Performing system checks...
-
-    System check identified no issues (0 silenced).
-    April 27, 2024 - 02:47:12
-    Django version 4.1.1, using settings 'hypernews.settings'
-    Starting development server at http://127.0.0.1:8001/
-    Quit the server with CONTROL-C.
-
-    stderr:
-    [27/Apr/2024 02:47:12] "GET / HTTP/1.1" 200 271
-    [27/Apr/2024 02:47:12] "GET / HTTP/1.1" 200 271
-    [27/Apr/2024 02:47:12] "GET /news/9234732/ HTTP/1.1" 200 236
-    [27/Apr/2024 02:47:12] "GET /news/1/ HTTP/1.1" 200 215
-    [27/Apr/2024 02:47:12] "GET /news/2/ HTTP/1.1" 200 215
-    [27/Apr/2024 02:47:12] "GET /news/3/ HTTP/1.1" 200 215
-    [27/Apr/2024 02:47:12] "GET /news/9234732/ HTTP/1.1" 200 236
-  time: "Sat, 27 Apr 2024 02:47:12 UTC"
+  message: Congratulations!
+  time: "Sat, 27 Apr 2024 02:50:14 UTC"
 record: 4
