@@ -10,3 +10,6 @@ content:
   - Using models with templates
   - Reading files
   - Json module
+  - Datetime module
+  - Template tags
+  - Lambda functions

@@ -1,0 +1,20 @@
+type: choice
+is_multiple_choice: false
+options:
+  - text: <code>datetime.today()</code>
+  - text: <code>datetime.weather()</code>
+  - text: <code>datetime.date()</code>
+  - text: <code>datetime.now()</code>
+files:
+  - name: main.py
+    visible: true
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/15947#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Sat, 27 Apr 2024 17:44:49 UTC"
+record: -1
+selected_options:
+  - 1
+local_check: false

@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>List of News Items</title>
+    <title>Hyper news</title>
 </head>
 <body>
-    <h2>List of News Items</h2>
+    <h2>Hyper news</h2>
     <UL>
         {% for news_item in news_item_list %}
         <LI><a href="/news/{{news_item.link}}/">{{news_item.title}}</a> {{news_item.created}}</LI>

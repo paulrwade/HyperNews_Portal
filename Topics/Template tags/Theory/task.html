@@ -1,0 +1,63 @@
+<div class="step-text">
+<p>Django, a robust Python web development framework, provides helpful tools for creating dynamic and interactive templates. This is one of the things that Django tags can help us with. It is also essential to understand how to secure your forms and requests. Let's learn more about where and how we can use template tags!</p>
+<h5 id="conditions">Conditions</h5>
+<p><strong>Tags</strong> are special constructions embraced in the operators <code class="language-html">{%</code> and <code class="language-html">%}</code>. They can help you process parts of your template or include external resources like predefined HTML code or even other templates. </p>
+<p>With controlling statements, we can choose what we show or do on the page depending on the <strong>conditions</strong>.</p>
+<p>Just like in Python, branching in DTL consists of <code class="language-html">if</code>, <code class="language-html">elif</code>, and <code class="language-html">else</code> statements. Curly brackets with the percent sign <code class="language-html">{%</code> and <code class="language-html">%}</code> embrace them and all the other tags: tags differ from variables syntactically. All branches start with <code class="language-html">{% if %}</code> and end with <code class="language-html">{% endif %}</code> statements.</p>
+<p>Let's get back to our example: we've notified John that we used his first post as an example for our topic, so he made the following entry with the link to our site. The post's text speaks for itself, so John does not add a theme. He wants to retain the layout of a page, and if there's no theme, the header will be <code class="language-html">No theme</code> as well:</p>
+<pre><code class="language-html">&lt;html&gt;
+  &lt;body&gt;
+    &lt;h3&gt;
+      {% if post.theme %} 
+          Theme: {{ post.theme }}
+      {% else %} 
+          No theme
+      &lt;!-- Without the closing tag the whole expression is not correct --&gt;
+      {% endif %}
+    &lt;/h3&gt;
+    &lt;a href="https://hyperskill.org"&gt;How to make a post entry with Django&lt;/a&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p>If you don't have a variable when you get access to a value, it's not a grave mistake. The rule is if we do not pass a variable in the context, the value of this variable is <code class="language-html">None</code> by default.</p>
+<p></p><div class="alert alert-warning">Be cautious if you want to access attributes and methods of <code class="language-html">None</code> — this will cause an error.</div>
+<p></p><div class="alert alert-primary">Some tags like <code class="language-html">{% if %}</code> and <code class="language-html">{% endif %}</code> need opening and closing parts to work correctly; others don't. Please refer to the <a href="https://docs.djangoproject.com/en/4.2/ref/templates/builtins/#" rel="noopener noreferrer nofollow" target="_blank">documentation</a> for more information about tags.</div>
+<h5 id="loops">Loops</h5>
+<p>Sometimes we don't know how many items we've got on a list, but we still want to show all of them one by one on a page. Loops are helpful when you have to iterate over many similar elements.</p>
+<p>The template loops are similar to Python <code class="language-html">for</code> expressions. Start one with <code class="language-html">{% for %}</code> and end it with the <code class="language-html">{% endfor %}</code> statements.</p>
+<p>For example, look at the comment section under John's first post: he's getting somewhere! Let's render all comments to the post one after another:</p>
+<pre><code class="language-html">&lt;html&gt;
+  &lt;body&gt;
+    {% for comment in post.comments %}
+      &lt;div&gt;Comment #{{ forloop.counter }}: {{ comment }}&lt;/div&gt;
+    {% endfor %}
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<p></p><div class="alert alert-primary"><code class="language-html">forloop</code> is the context variable provided by Django only as part of a <code class="language-html">for</code> loop when rendering templates. It provides information about the current iteration of the loop, allowing developers to control logic based on this information.
+
+<p>To access the index of the element, use the following:</p>
+<ul>
+<li><code class="language-html">{{ forloop.counter0 }}</code> for zero-based iteration (it means that the indexes take values <code class="language-html">0</code>, <code class="language-html">1</code>, <code class="language-html">2</code>, ...)</li>
+<li><code class="language-html">{{ forloop.counter }}</code> for one-based (the indexes take values <code class="language-html">1</code>, <code class="language-html">2</code>, <code class="language-html">3</code>, ...)</li></ul></div>
+<h5 id="csrf-token">CSRF token</h5>
+<p>To send data to the server, we use HTML forms. Users can send confidential data and make financial transactions through forms, so we should secure the forms from potential spoofing.</p>
+<p>Let's create a template to add comments to posts. Saving comments in handlers is too much for now, so let's prepare a section that we'll include later when we learn how to process requests on the server:</p>
+<pre><code class="language-html">&lt;form action="/comment/save" method="post"&gt;
+  {% csrf_token %}
+  &lt;input name="text"&gt;
+  &lt;input type="submit" value="Save"&gt;
+&lt;/form&gt;</code></pre>
+<p>If you look closely at the code snippet, you'll surely notice a tag <code class="language-html">{% csrf_token %}</code>. <strong>CSRF</strong> stands for <a href="https://en.wikipedia.org/wiki/Cross-site_request_forgery" rel="noopener noreferrer nofollow" target="_blank">Cross-Site Request Forgery</a>. We don't want any fraud, so in forms, we must always use this tag to secure our applications. CSRF token is a generated sequence of symbols that the server uses to identify the user's session. If the sequence matches, the form is considered reliable.</p>
+<p></p><div class="alert alert-primary">Including CSRF tokens in the POST requests is obligatory in Django by default. You can turn off the verification in your handlers, but it's highly recommended to keep it.</div>
+<p>We can face many more <a href="https://owasp.org/www-project-top-ten/" rel="noopener noreferrer nofollow" target="_blank">security issues</a> in our web applications, but with the CSRF token, we'll have one issue less to think about.</p>
+<h5 id="other-useful-tags">Other useful tags</h5>
+<p>Sometimes we have several variables, but only one needs to be displayed. For example, we need to show the post's author determined by the <code class="language-html">post.author</code> variable; if they're not defined, the blog's author is determined by the <code class="language-html">blog_author</code> variable, and if they're not defined too, we need to show the <code class="language-html">Unknown author</code> title. The <code class="language-html">firstof</code> template tag can help us. It is used to output the first non-empty variable from a list of variables. It takes multiple arguments and returns the first argument's value that is not empty or False. If all arguments are empty or <code class="language-html">False</code>, it will return an empty string. Let's see how it works:</p>
+<pre><code class="language-html">{% firstof post.author blog_author "Unknown author" %}</code></pre>
+<p>If we have only one variable to check, we can use the <code class="language-html">default</code> template filter. It is used to specify a default value for a variable if it is not defined or is empty:</p>
+<pre><code class="language-html">{{ post.author|default:"Unknown author" }}</code></pre>
+<p>Finally, when we have a boolean variable, we may need to display different information depending on its value. Suppose you have an <code class="language-html">actual</code> field that is <code class="language-html">True</code> if the post in the blog is actual and <code class="language-html">False</code> if it's not. We can make a condition to show the information, but there is an easier way: the <code class="language-html">yesno</code> template filter displays different outputs based on a given value (usually a boolean or a string that can be interpreted as a boolean). It takes three arguments: the value to be evaluated, the output if the value is <code class="language-html">True</code>, and the output if the value is <code class="language-html">False</code>. In our case, we only need to write:</p>
+<pre><code class="language-html">This post is {{ post.actual|yesno:"actual,too old"}}</code></pre>
+<h5 id="conclusion">Conclusion</h5>
+<p>In this topic, we learned how to use template tags for creating conditional statements and loops. These tools will prove to be extremely valuable as your project expands. Additionally, it is vital to consider security by adding CSRF tokens to forms in order to secure user sessions.</p>
+</div>

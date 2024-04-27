@@ -1,0 +1,17 @@
+type: choice
+is_multiple_choice: false
+options:
+  - text: For encrypting sensitive data in the URL
+  - text: For protecting against fraud attacks
+  - text: The CSRF token is used for caching website data in the user's browser
+  - text: For client-side form validation
+files:
+  - name: main.py
+    visible: true
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/33370#comment
+status: Solved
+record: -1
+selected_options:
+  - 1
+local_check: false

@@ -1,0 +1,21 @@
+type: choice
+is_multiple_choice: true
+options:
+  - text: "<code>{% else if %}</code>"
+  - text: "<code>{% if %}</code>"
+  - text: "<code>{% elif %}</code>"
+  - text: "<code>{% when %}</code>"
+files:
+  - name: main.py
+    visible: true
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/33364#comment
+status: Solved
+feedback:
+  message: <html>Correct solution</html>
+  time: "Sat, 27 Apr 2024 20:11:12 UTC"
+record: -1
+selected_options:
+  - 1
+  - 2
+local_check: false
