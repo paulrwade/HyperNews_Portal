@@ -67,9 +67,6 @@ files:
   - name: news/news.json
     visible: true
     learner_created: true
-  - name: db.test.sqlite3
-    visible: true
-    learner_created: true
   - name: news/migrations/0002_news_created_news_link.py
     visible: true
     learner_created: true
@@ -89,9 +86,9 @@ feedback_link: https://hyperskill.org/learn/step/9412#comment
 status: Failed
 feedback:
   message: |-
-    Wrong answer in test #1
+    Wrong answer in test #3
 
-    "Coming soon" page (http://localhost:8001/) should contain "Coming soon" text
+    News page should contain <a> element with href /news/
 
     Please find below the output of your program during this failed test.
 
@@ -101,13 +98,18 @@ feedback:
     Performing system checks...
 
     System check identified no issues (0 silenced).
-    April 27, 2024 - 00:40:02
+    April 27, 2024 - 02:47:12
     Django version 4.1.1, using settings 'hypernews.settings'
     Starting development server at http://127.0.0.1:8001/
     Quit the server with CONTROL-C.
 
     stderr:
-    [27/Apr/2024 00:40:03] "GET / HTTP/1.1" 200 319
-    [27/Apr/2024 00:40:03] "GET / HTTP/1.1" 200 319
-  time: "Sat, 27 Apr 2024 00:40:03 UTC"
+    [27/Apr/2024 02:47:12] "GET / HTTP/1.1" 200 271
+    [27/Apr/2024 02:47:12] "GET / HTTP/1.1" 200 271
+    [27/Apr/2024 02:47:12] "GET /news/9234732/ HTTP/1.1" 200 236
+    [27/Apr/2024 02:47:12] "GET /news/1/ HTTP/1.1" 200 215
+    [27/Apr/2024 02:47:12] "GET /news/2/ HTTP/1.1" 200 215
+    [27/Apr/2024 02:47:12] "GET /news/3/ HTTP/1.1" 200 215
+    [27/Apr/2024 02:47:12] "GET /news/9234732/ HTTP/1.1" 200 236
+  time: "Sat, 27 Apr 2024 02:47:12 UTC"
 record: 4

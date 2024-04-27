@@ -1,6 +1,7 @@
 from django.views import generic
-from django.shortcuts import render
+from django.conf import settings
 from .models import News
+import json
 
 
 class IndexView(generic.ListView):

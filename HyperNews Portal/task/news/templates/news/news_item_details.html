@@ -5,9 +5,8 @@
     <title>News Item Details</title>
 </head>
 <body>
-    <h2>News Item Details</h2>
-    <p>Article Title: {{news_item.title}}</p>
-    <p>Created-On Date: {{news_item.created}}</p>
-    <p>Article Text: {{news_item.text}}</p>
+    <h2>{{news_item.title}}</h2>
+    <p>{{news_item.created|date:"Y-m-d H:i:s"}}</p>
+    <p>{{news_item.text}}</p>
 </body>
 </html>
