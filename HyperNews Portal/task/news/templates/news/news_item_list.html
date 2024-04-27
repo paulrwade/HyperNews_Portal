@@ -6,10 +6,10 @@
 </head>
 <body>
     <h2>Hyper news</h2>
-    <UL>
-        {% for news_item in news_item_list %}
-        <LI><a href="/news/{{news_item.link}}/">{{news_item.title}}</a> {{news_item.created}}</LI>
-        {% endfor %}
-    </UL>
+    {% for news_item in news_item_list %}
+        <h4>{{news.item.created}}</h4>
+    {% endfor %}
+    <a href="/news/create/">Create a news item</a>
 </body>
 </html>
+<!--<h4><a href="/news/{{news_item.link}}/">{{news_item.title}}</a> {{news_item.created}}</h4>-->

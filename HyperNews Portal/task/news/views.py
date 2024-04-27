@@ -16,7 +16,7 @@ class NewsItemListView(generic.ListView):
 	context_object_name = 'news_item_list'
 
 	def get_queryset(self, *args, **kwargs):
-		return News.objects.all()
+		return News.objects.all().order_by('created')
 
 
 class NewsItemDetailView(generic.ListView):
