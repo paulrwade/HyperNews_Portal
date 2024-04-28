@@ -1,6 +1,5 @@
 from django.views import generic
 from django.conf import settings
-# from .models import News
 import json
 
 
@@ -18,9 +17,8 @@ class NewsItemListView(generic.ListView):
 
 	def get_queryset(self, *args, **kwargs):
 		with open(settings.NEWS_JSON_PATH) as json_file:
-			news_item_list = json.load(json_file)
+			news_item_list = sorted(json.load(json_file), key=lambda k: k['created'])
 		return news_item_list
-		# return News.objects.all().order_by('created')
 
 
 # -----------------------------------------------------
@@ -32,5 +30,6 @@ class NewsItemDetailView(generic.ListView):
 		link = self.kwargs.get('link')
 		with open(settings.NEWS_JSON_PATH) as json_file:
 			my_news = json.load(json_file)
-			my_news = my_news[link]
-			return my_news
+			for news_item in my_news:
+				if news_item['link'] == link:
+					return news_item

@@ -82,44 +82,13 @@ files:
   - name: news/templates/news/news_item_details.html
     visible: true
     learner_created: true
-  - name: db.test.sqlite3
-    visible: true
-    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9413#comment
 status: Failed
 feedback:
   message: |-
-    Error in test #2
+    Wrong answer in test #5
 
-    [28/Apr/2024 01:25:07] "GET / HTTP/1.1" 200 265
-    [28/Apr/2024 01:25:07] "GET / HTTP/1.1" 200 265
-    Internal Server Error: /news/9234732/
-    Traceback (most recent call last):
-      File "/Users/paulwade/venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
-        response = get_response(request)
-                   ^^^^^^^^^^^^^^^^^^^^^
-      File "/Users/paulwade/venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
-        response = wrapped_callback(request, *callback_args, **callback_kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      File "/Users/paulwade/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 103, in view
-        return self.dispatch(request, *args, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      File "/Users/paulwade/venv/lib/python3.12/site-packages/django/views/generic/base.py", line 142, in dispatch
-        return handler(request, *args, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      File "/Users/paulwade/venv/lib/python3.12/site-packages/django/views/generic/list.py", line 154, in get
-        self.object_list = self.get_queryset()
-                           ^^^^^^^^^^^^^^^^^^^
-      File "/Users/paulwade/Documents/GitHub/HyperNews_Portal/HyperNews Portal/task/news/views.py", line 30, in get_queryset
-        return News.objects.get(link=link).order_by('title')
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      File "/Users/paulwade/venv/lib/python3.12/site-packages/django/db/models/manager.py", line 85, in manager_method
-        return getattr(self.get_queryset(), name)(*args, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      File "/Users/paulwade/venv/lib/python3.12/site-packages/django/db/models/query.py", line 650, in get
-        raise self.model.DoesNotExist(
-    news.models.News.DoesNotExist: News matching query does not exist.
-    [28/Apr/2024 01:25:07] "GET /news/9234732/ HTTP/1.1" 500 79279
+    Main page (http://localhost:8001/news/) should contain <h4> elements grouped by date created and first should be fresh news.
 
     Please find below the output of your program during this failed test.
 
@@ -129,40 +98,20 @@ feedback:
     Performing system checks...
 
     System check identified no issues (0 silenced).
-    April 28, 2024 - 01:25:07
+    April 28, 2024 - 20:18:43
     Django version 4.1.1, using settings 'hypernews.settings'
     Starting development server at http://127.0.0.1:8001/
     Quit the server with CONTROL-C.
 
     stderr:
-    [28/Apr/2024 01:25:07] "GET / HTTP/1.1" 200 265
-    [28/Apr/2024 01:25:07] "GET / HTTP/1.1" 200 265
-    Internal Server Error: /news/9234732/
-    Traceback (most recent call last):
-      File "venv/lib/python3.12/site-packages/django/core/handlers/exception.py", line 55, in inner
-        response = get_response(request)
-                   ^^^^^^^^^^^^^^^^^^^^^
-      File "venv/lib/python3.12/site-packages/django/core/handlers/base.py", line 197, in _get_response
-        response = wrapped_callback(request, *callback_args, **callback_kwargs)
-                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      File "venv/lib/python3.12/site-packages/django/views/generic/base.py", line 103, in view
-        return self.dispatch(request, *args, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      File "venv/lib/python3.12/site-packages/django/views/generic/base.py", line 142, in dispatch
-        return handler(request, *args, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      File "venv/lib/python3.12/site-packages/django/views/generic/list.py", line 154, in get
-        self.object_list = self.get_queryset()
-                           ^^^^^^^^^^^^^^^^^^^
-      File "Documents/GitHub/HyperNews_Portal/HyperNews Portal/task/news/views.py", line 30, in get_queryset
-        return News.objects.get(link=link).order_by('title')
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      File "venv/lib/python3.12/site-packages/django/db/models/manager.py", line 85, in manager_method
-        return getattr(self.get_queryset(), name)(*args, **kwargs)
-               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-      File "venv/lib/python3.12/site-packages/django/db/models/query.py", line 650, in get
-        raise self.model.DoesNotExist(
-    news.models.News.DoesNotExist: News matching query does not exist.
-    [28/Apr/2024 01:25:07] "GET /news/9234732/ HTTP/1.1" 500 79279
-  time: "Sun, 28 Apr 2024 01:25:08 UTC"
+    [28/Apr/2024 20:18:43] "GET / HTTP/1.1" 200 265
+    [28/Apr/2024 20:18:43] "GET / HTTP/1.1" 200 265
+    [28/Apr/2024 20:18:43] "GET /news/9234732/ HTTP/1.1" 200 295
+    [28/Apr/2024 20:18:43] "GET /news/1/ HTTP/1.1" 200 274
+    [28/Apr/2024 20:18:43] "GET /news/2/ HTTP/1.1" 200 274
+    [28/Apr/2024 20:18:43] "GET /news/3/ HTTP/1.1" 200 274
+    [28/Apr/2024 20:18:43] "GET /news/9234732/ HTTP/1.1" 200 295
+    [28/Apr/2024 20:18:43] "GET /news/ HTTP/1.1" 200 804
+    [28/Apr/2024 20:18:43] "GET /news/ HTTP/1.1" 200 804
+  time: "Sun, 28 Apr 2024 20:18:44 UTC"
 record: -1

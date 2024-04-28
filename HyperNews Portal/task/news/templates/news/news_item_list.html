@@ -6,17 +6,15 @@
 </head>
 <body>
     <h2>Hyper news</h2>
-    {% regroup news_item_list by created as news_created_dates %}
-    {% for news_created_date in news_created_dates %}
-        <h4>{{ news_created_date.grouper }}</h4>
-        <ul>
-        {% for news_item in news_item_list %}
-            {% if news_item.created == news_created_date.grouper %}
+    {% for news_item in news_item_list|dictsortreversed:"created" %}
+        {% ifchanged %}
+            </ul>
+            <h4>{{ news_item.created }}</h4>
+            <ul>{% endifchanged %}
             <li><a href="/news/{{news_item.link}}/">{{news_item.title}}</a></li>
-            {% endif %}
-        {% endfor %}
-        </ul>
     {% endfor %}
+    </ul>
     <p><a href="/news/create/">Create a news item</a></p>
 </body>
 </html>
+
