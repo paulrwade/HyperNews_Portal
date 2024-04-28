@@ -9,7 +9,7 @@
     {% for news_item in news_item_list|dictsortreversed:"created" %}
         {% ifchanged %}
             </ul>
-            <h4>{{ news_item.created }}</h4>
+            <h4>{{ news_item.created|date:'Y-m-d' }}</h4>
             <ul>{% endifchanged %}
             <li><a href="/news/{{news_item.link}}/">{{news_item.title}}</a></li>
     {% endfor %}

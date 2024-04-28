@@ -83,35 +83,8 @@ files:
     visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9413#comment
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Wrong answer in test #5
-
-    Main page (http://localhost:8001/news/) should contain <h4> elements grouped by date created and first should be fresh news.
-
-    Please find below the output of your program during this failed test.
-
-    ---
-
-    stdout:
-    Performing system checks...
-
-    System check identified no issues (0 silenced).
-    April 28, 2024 - 20:18:43
-    Django version 4.1.1, using settings 'hypernews.settings'
-    Starting development server at http://127.0.0.1:8001/
-    Quit the server with CONTROL-C.
-
-    stderr:
-    [28/Apr/2024 20:18:43] "GET / HTTP/1.1" 200 265
-    [28/Apr/2024 20:18:43] "GET / HTTP/1.1" 200 265
-    [28/Apr/2024 20:18:43] "GET /news/9234732/ HTTP/1.1" 200 295
-    [28/Apr/2024 20:18:43] "GET /news/1/ HTTP/1.1" 200 274
-    [28/Apr/2024 20:18:43] "GET /news/2/ HTTP/1.1" 200 274
-    [28/Apr/2024 20:18:43] "GET /news/3/ HTTP/1.1" 200 274
-    [28/Apr/2024 20:18:43] "GET /news/9234732/ HTTP/1.1" 200 295
-    [28/Apr/2024 20:18:43] "GET /news/ HTTP/1.1" 200 804
-    [28/Apr/2024 20:18:43] "GET /news/ HTTP/1.1" 200 804
-  time: "Sun, 28 Apr 2024 20:18:44 UTC"
+  message: Congratulations!
+  time: "Sun, 28 Apr 2024 21:58:04 UTC"
 record: -1

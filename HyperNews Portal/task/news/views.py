@@ -1,5 +1,7 @@
 from django.views import generic
 from django.conf import settings
+import parsedatetime
+from datetime import datetime
 import json
 
 
@@ -16,8 +18,11 @@ class NewsItemListView(generic.ListView):
 	context_object_name = 'news_item_list'
 
 	def get_queryset(self, *args, **kwargs):
-		with open(settings.NEWS_JSON_PATH) as json_file:
+		with (open(settings.NEWS_JSON_PATH) as json_file):
 			news_item_list = sorted(json.load(json_file), key=lambda k: k['created'])
+			calendar = parsedatetime.Calendar()
+			for news_item in news_item_list:
+				news_item['created'] = datetime.fromisoformat(news_item['created'])
 		return news_item_list
 
 
