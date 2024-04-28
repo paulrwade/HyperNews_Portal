@@ -6,14 +6,16 @@
 </head>
 <body>
     <h2>Hyper news</h2>
-    {% regroup news_item_list by created as news_item_list_order_by_created %}
-    {% for created in news_item_list_order_by_created %}
-    <h4>{{ created.grouper }}</h4>
-    <ul>
-        {% for news_item in created.list %}
-        <li><a href="/news/{{news_item.link}}/">{{news_item.title}}</a></li>
+    {% regroup news_item_list by created as news_created_dates %}
+    {% for news_created_date in news_created_dates %}
+        <h4>{{ news_created_date.grouper }}</h4>
+        <ul>
+        {% for news_item in news_item_list %}
+            {% if news_item.created == news_created_date.grouper %}
+            <li><a href="/news/{{news_item.link}}/">{{news_item.title}}</a></li>
+            {% endif %}
         {% endfor %}
-    </ul>
+        </ul>
     {% endfor %}
     <p><a href="/news/create/">Create a news item</a></p>
 </body>
