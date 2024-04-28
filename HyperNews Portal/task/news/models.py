@@ -8,7 +8,7 @@ class News(models.Model):
     link = models.IntegerField(default=0)
 
     class META:
-        ordering = ['title', 'created']
+        ordering = ['created', 'title']
 
     def __str__(self, *args, **kwargs):
         return f'{self.title}, {self.created}, {self.text}, {self.link}'
