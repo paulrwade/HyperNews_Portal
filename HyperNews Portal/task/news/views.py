@@ -11,12 +11,18 @@ class IndexView(generic.ListView):
 		return None
 
 
+# ------------------------------------------------------
+
+
 class NewsItemListView(generic.ListView):
 	template_name = 'news/news_item_list.html'
 	context_object_name = 'news_item_list'
 
 	def get_queryset(self, *args, **kwargs):
-		return News.objects.all()
+		return News.objects.all().order_by('created')
+
+
+# -----------------------------------------------------
 
 
 class NewsItemDetailView(generic.ListView):
@@ -25,4 +31,4 @@ class NewsItemDetailView(generic.ListView):
 
 	def get_queryset(self, *args, **kwargs):
 		link = self.kwargs.get('link')
-		return News.objects.get(link=link)
+		return News.objects.get(link=link).order_by('title')
