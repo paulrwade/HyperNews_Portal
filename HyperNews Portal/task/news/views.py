@@ -1,7 +1,7 @@
 from django.views import generic
-from django.conf import settings
+# from django.conf import settings
 from .models import News
-import json
+# import json
 
 
 class IndexView(generic.ListView):
@@ -12,8 +12,6 @@ class IndexView(generic.ListView):
 
 
 # ------------------------------------------------------
-
-
 class NewsItemListView(generic.ListView):
 	template_name = 'news/news_item_list.html'
 	context_object_name = 'news_item_list'
@@ -23,8 +21,6 @@ class NewsItemListView(generic.ListView):
 
 
 # -----------------------------------------------------
-
-
 class NewsItemDetailView(generic.ListView):
 	template_name = 'news/news_item_details.html'
 	context_object_name = 'news_item'

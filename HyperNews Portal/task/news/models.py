@@ -1,7 +1,14 @@
 from django.db import models
 
 
-class News(models.Model):
+class BaseModel(models.Model):
+    objects = models.Manager()
+
+    class META:
+        abstract = True
+
+
+class News(BaseModel):
     created = models.DateTimeField(null=True, blank=True)
     text = models.TextField()
     title = models.CharField(max_length=128)
