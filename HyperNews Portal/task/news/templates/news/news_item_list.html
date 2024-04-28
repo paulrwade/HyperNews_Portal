@@ -7,9 +7,12 @@
 <body>
     <h2>Hyper news</h2>
     {% for news_item in news_item_list %}
-        <h4>{{news.item.created}}</h4>
+    <h4>{{news_item.created}}</h4>
+    <ul>
+        <li><a href="/news/{{news_item.link}}/">{{news_item.title}}</a></li>
+    </ul>
     {% endfor %}
-    <a href="/news/create/">Create a news item</a>
+    <p><a href="/news/create/">Create a news item</a></p>
 </body>
 </html>
 <!--<h4><a href="/news/{{news_item.link}}/">{{news_item.title}}</a> {{news_item.created}}</h4>-->
