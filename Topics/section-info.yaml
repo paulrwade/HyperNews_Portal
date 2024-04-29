@@ -13,3 +13,6 @@ content:
   - Datetime module
   - Template tags
   - Lambda functions
+  - Writing files
+  - Datetime parsing and formatting
+  - Submitting data

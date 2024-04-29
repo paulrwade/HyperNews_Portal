@@ -1,0 +1,12 @@
+content:
+  - Theory
+  - Attributes
+  - Not Implemented Error
+  - POST request with several keys
+  - Idempotence of HTTP Methods
+  - DELETE request with several keys
+  - Redirect or 404
+  - Delete Request
+  - QueryDict
+  - Idempotence
+  - POST Request

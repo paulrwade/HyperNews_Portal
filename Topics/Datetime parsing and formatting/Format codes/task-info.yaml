@@ -1,0 +1,23 @@
+type: matching
+captions:
+  - <code>%d %m %y</code>
+  - <code>%d %m %Y</code>
+  - <code>%d %B %y</code>
+  - <code>%d %B %Y</code>
+options:
+  - day of the month — the full name of a month — year with century
+  - day of the month — month as a number — year without century
+  - day of the month — month as a number — year with century
+  - day of the month — the full name of a month — year without century
+files:
+  - name: main.py
+    visible: true
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/15246#comment
+status: Solved
+record: -1
+ordering:
+  - 0
+  - 1
+  - 2
+  - 3

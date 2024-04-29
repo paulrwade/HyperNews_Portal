@@ -1,0 +1,27 @@
+type: matching
+custom_name: What time is it?
+captions:
+  - '%m/%d/%Y %H:%M'
+  - "%B, %d %Y"
+  - '%d.%m.%y'
+  - '%d/%m/%Y %H:%M'
+  - '%d.%m.%Y'
+options:
+  - 20.07.1969
+  - "July, 20 1969"
+  - 07/20/1969 20:17
+  - 20.07.69
+  - 20/07/1969 20:17
+files:
+  - name: main.py
+    visible: true
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/9816#comment
+status: Solved
+record: -1
+ordering:
+  - 0
+  - 1
+  - 2
+  - 3
+  - 4

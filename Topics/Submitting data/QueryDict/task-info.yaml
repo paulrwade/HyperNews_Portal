@@ -1,0 +1,15 @@
+type: choice
+is_multiple_choice: true
+options:
+  - text: <code>QueryDict</code> can only contain data from request
+  - text: <code>QueryDict</code> can be cleared
+  - text: <code>QueryDict</code> is not a dictionary
+  - text: <code>QueryDict</code> cannot be updated
+files:
+  - name: main.py
+    visible: true
+    learner_created: false
+feedback_link: https://hyperskill.org/learn/step/7334#comment
+status: Solved
+record: -1
+local_check: false
