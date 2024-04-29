@@ -38,3 +38,8 @@ class NewsItemDetailView(generic.ListView):
 			for news_item in my_news:
 				if news_item['link'] == link:
 					return news_item
+
+
+class NewsItemCreateView(generic.CreateView):
+
+
