@@ -94,9 +94,12 @@ files:
   - name: news/migrations/0005_alter_news_text.py
     visible: true
     learner_created: true
+  - name: hypernews/static/css/base.css
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9414#comment
 status: Solved
 feedback:
   message: Congratulations!
-  time: "Tue, 30 Apr 2024 21:51:59 UTC"
+  time: "Tue, 30 Apr 2024 22:18:39 UTC"
 record: -1

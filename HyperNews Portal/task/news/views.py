@@ -1,7 +1,5 @@
 import random
-
 from django.shortcuts import redirect
-
 from .models import News
 from .forms import CreateNewsItemForm
 from django.views import generic
@@ -23,10 +21,20 @@ class NewsItemListView(generic.ListView):
 	context_object_name = 'news_item_list'
 
 	def get_queryset(self, *args, **kwargs):
+
+		q = self.request.GET.get('q') or None
+
 		with (open(settings.NEWS_JSON_PATH) as json_file):
 			news_item_list = sorted(json.load(json_file), key=lambda k: k['created'])
+
 			for news_item in news_item_list:
 				news_item['created'] = datetime.fromisoformat(news_item['created'])
+
+			if q is not None:
+				for news_item in news_item_list:
+					if q not in news_item['title']:
+						news_item_list.remove(news_item)
+
 		return news_item_list
 
 
@@ -56,14 +64,19 @@ class NewsItemCreateView(generic.CreateView):
 		return None
 
 	def post(self, request, *args, **kwargs):
-
 		title = str(request.POST['title'])
 		text = str(request.POST['text'])
 		link = random.randint(1000, 9999)
 
 		with open(settings.NEWS_JSON_PATH, 'r') as json_file:
 			my_news = json.load(json_file)
-			news_item_to_add = {'created': str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")), 'text': text, 'title': title, 'link': link}
+
+			news_item_to_add = {
+								'created': str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')),
+								'text': text,
+								'title': title,
+								'link': link}
+
 			my_news.append(news_item_to_add)
 
 		with open(settings.NEWS_JSON_PATH, 'w') as json_file:
