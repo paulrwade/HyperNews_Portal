@@ -6,7 +6,7 @@ import json
 
 
 class IndexView(generic.ListView):
-	template_name = '/news/index.html'
+	template_name = 'index.html'
 
 	def get_queryset(self):
 		return None
@@ -14,7 +14,7 @@ class IndexView(generic.ListView):
 
 # ------------------------------------------------------
 class NewsItemListView(generic.ListView):
-	template_name = 'news/news_item_list.html'
+	template_name = 'news_item_list.html'
 	context_object_name = 'news_item_list'
 
 	def get_queryset(self, *args, **kwargs):
@@ -27,7 +27,7 @@ class NewsItemListView(generic.ListView):
 
 # -----------------------------------------------------
 class NewsItemDetailView(generic.ListView):
-	template_name = 'news/news_item_details.html'
+	template_name = 'news_item_details.html'
 	context_object_name = 'news_item'
 
 	def get_queryset(self, *args, **kwargs):
@@ -41,7 +41,7 @@ class NewsItemDetailView(generic.ListView):
 
 class NewsItemCreateView(generic.CreateView):
 
-	template_name = 'news/news_item_create.html'
+	template_name = 'news_item_create.html'
 	context_object_name = 'news_item'
 
 	def get_queryset(self):
