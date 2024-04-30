@@ -48,7 +48,7 @@ files:
   - name: tests.py
     visible: false
     learner_created: false
-  - name: news/templates/news/index.html
+  - name: news/templates/news/coming_soon.html
     visible: true
     learner_created: true
   - name: news/news.json
@@ -57,7 +57,7 @@ files:
   - name: news/urls.py
     visible: true
     learner_created: true
-  - name: db.test.sqlite3
+  - name: db.sqlite3
     visible: true
     is_binary: true
     learner_created: true

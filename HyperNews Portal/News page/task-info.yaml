@@ -57,7 +57,7 @@ files:
   - name: hypernews/news.json
     visible: true
     learner_created: true
-  - name: db.test.sqlite3
+  - name: db.sqlite3
     visible: true
     is_binary: true
     learner_created: true
@@ -73,7 +73,7 @@ files:
   - name: news/migrations/0003_alter_news_options_alter_news_created.py
     visible: true
     learner_created: true
-  - name: news/templates/news/index.html
+  - name: news/templates/news/coming_soon.html
     visible: true
     learner_created: true
   - name: news/migrations/0004_alter_news_options.py
