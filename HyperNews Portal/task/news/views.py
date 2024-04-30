@@ -1,5 +1,7 @@
 # from django.http import HttpRequest
-# from django.shortcuts import render
+from django.shortcuts import render
+# import django.forms
+# from django.forms import BaseForm
 from .models import News
 from .forms import CreateNewsItemForm
 from django.views import generic
@@ -45,22 +47,29 @@ class NewsItemDetailView(generic.ListView):
 # ------------------------------------------------------
 class NewsItemCreateView(generic.CreateView):
 	template_name = 'news_item_create.html'
+	form = CreateNewsItemForm
 	model = News
 	fields = ['title', 'text']
 	success_url = "/news/"
 
+	def get_queryset(self):
+		return None
+
 	def post(self, request, *args, **kwargs):
 
-		news_item = CreateNewsItemForm(request.POST)
-		form = self.form_class(news_item)
+		news_item_to_add = CreateNewsItemForm(request.POST)
 
-		if form.is_valid():
+		if news_item_to_add.is_valid():
+
 			with open(settings.NEWS_JSON_PATH) as json_file:
-
 				news_list = json.load(json_file)
 
-				if news_item not in news_list:
-					news_list.append(form.cleaned_data)
+				if news_item_to_add not in news_list:
+					news_item_to_add['created'] = str(datetime.now)
+					news_list.append(CreateNewsItemForm.cleaned_data)
+
+		return render(request, self.template_name, {'form': news_item_to_add})
+
 
 # --------------------------------------------------------
 # class NewsItemUpdateView(generic.UpdateView):
