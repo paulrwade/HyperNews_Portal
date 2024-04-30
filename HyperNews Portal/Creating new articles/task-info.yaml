@@ -88,6 +88,12 @@ files:
   - name: db.test.sqlite3
     visible: true
     learner_created: true
+  - name: news/forms.py
+    visible: true
+    learner_created: true
+  - name: __init__.py
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9414#comment
 status: Failed
 feedback:

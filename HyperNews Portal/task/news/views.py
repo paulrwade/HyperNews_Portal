@@ -1,4 +1,6 @@
-from django.forms import Form
+from django.http import HttpRequest
+from django.shortcuts import render
+from .forms import AddNewsItemForm
 from django.views import generic
 from django.conf import settings
 from datetime import datetime
@@ -42,21 +44,29 @@ class NewsItemDetailView(generic.ListView):
 class NewsItemCreateView(generic.CreateView):
 
 	template_name = 'news_item_create.html'
-	context_object_name = 'news_item'
+	context = {}
+	request = HttpRequest()
+	form = AddNewsItemForm(request.POST or None)
+	context['form'] = form
 
 	def get_queryset(self):
 		return None
 
 	def post(self, request, *args, **kwargs):
 
-		with open(settings.NEWS_JSON_PATH) as json_file:
-			my_news = json.load(json_file)
+		if request.POST:
 
-			title = Form.cleaned_data['title']
-			text = Form.cleaned_data['text']
-			created = str(datetime.now())
+			if self.form.is_valid():
 
-			news_item = [{'title': title, 'text': text, 'created': created}]
+				title = self.form.cleaned_data.get("title")
+				text = self.form.cleaned_data.get("text")
 
-		if not my_news.contains(news_item):
-			my_news.append(news_item)
+				with open(settings.NEWS_JSON_PATH) as json_file:
+					my_news = json.load(json_file)
+
+					news_item = [{'title': title, 'text': text, 'created': str(datetime.now())}]
+
+					if not my_news.contains(news_item):
+						my_news.append(news_item)
+
+		return render(request, template_name=self.template_name, context=self.context)
