@@ -55,15 +55,14 @@ class NewsItemCreateView(generic.CreateView):
 
 	def post(self, request, *args, **kwargs):
 
-		news_item_to_add = CreateNewsItemForm(request.POST or None)
+		title = request.POST['title']
+		text = request.POST['text']
+		link = request.POST['link']
 
-		with open(settings.NEWS_JSON_PATH, 'a+') as json_file:
-			news_list = json.load(json_file)
+		news_item_to_add = [{'title': title, 'text': text, 'created': str(datetime.now())}]
 
-			# if news_item_to_add not in news_list:
-			news_item_to_add.created = str(datetime.now)
-			news_list.append(news_item_to_add)
-			json_file.writelines(json.dumps(news_list))
+		with open(settings.NEWS_JSON_PATH, 'w') as json_file:
+			json_file.write(json.dumps(news_item_to_add))
 
 		return redirect('/news')
 
