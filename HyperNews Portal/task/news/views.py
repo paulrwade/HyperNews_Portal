@@ -59,12 +59,15 @@ class NewsItemCreateView(generic.CreateView):
 
 		title = str(request.POST['title'])
 		text = str(request.POST['text'])
-		link = str(random.randint(1000, 9999))
+		link = random.randint(1000, 9999)
 
-		news_item_to_add = [{'title': title, 'text': text, 'created': str(datetime.now()), 'link': link}]
+		with open(settings.NEWS_JSON_PATH, 'r') as json_file:
+			my_news = json.load(json_file)
+			news_item_to_add = {'created': str(datetime.now().strftime("%Y-%m-%d %H:%M:%S")), 'text': text, 'title': title, 'link': link}
+			my_news.append(news_item_to_add)
 
 		with open(settings.NEWS_JSON_PATH, 'w') as json_file:
-			json_file.write(json.dumps(news_item_to_add))
+			json_file.write(json.dumps(my_news))
 
 		return redirect('/news')
 
