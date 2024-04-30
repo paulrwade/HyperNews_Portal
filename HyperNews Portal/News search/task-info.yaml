@@ -103,8 +103,33 @@ feedback_link: https://hyperskill.org/learn/step/9415#comment
 status: Failed
 feedback:
   message: |-
-    Error in test #1
+    Wrong answer in test #1
 
-    Cannot apply migrations to an empty database.
-  time: "Tue, 30 Apr 2024 23:39:15 UTC"
+    Cannot connect to the "Coming soon" page (http://localhost:8000/).
+
+    Please find below the output of your program during this failed test.
+
+    ---
+
+    stdout:
+    Performing system checks...
+
+    System check identified no issues (0 silenced).
+    April 30, 2024 - 23:40:47
+    Django version 4.1.1, using settings 'hypernews.settings'
+    Starting development server at http://127.0.0.1:8000/
+    Quit the server with CONTROL-C.
+
+    stderr:
+    Internal Server Error: /
+    Traceback (most recent call last):
+      File "exception.py", line 55, in inner
+        response = get_response(request)
+                   ^^^^^^^^^^^^^^^^^^^^^
+      File "base.py", line 197, in _get_response
+        response = wrapped_callback(request, *callback_args, **callback_kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    TypeError: View.as_view() takes 1 positional argument but 2 were given
+    [30/Apr/2024 23:40:48] "GET / HTTP/1.1" 500 54859
+  time: "Tue, 30 Apr 2024 23:40:48 UTC"
 record: -1
