@@ -1,12 +1,12 @@
+from django.forms import Form
 from django.views import generic
 from django.conf import settings
-import parsedatetime
 from datetime import datetime
 import json
 
 
 class IndexView(generic.ListView):
-	template_name = 'news/index.html'
+	template_name = '/news/index.html'
 
 	def get_queryset(self):
 		return None
@@ -20,7 +20,6 @@ class NewsItemListView(generic.ListView):
 	def get_queryset(self, *args, **kwargs):
 		with (open(settings.NEWS_JSON_PATH) as json_file):
 			news_item_list = sorted(json.load(json_file), key=lambda k: k['created'])
-			calendar = parsedatetime.Calendar()
 			for news_item in news_item_list:
 				news_item['created'] = datetime.fromisoformat(news_item['created'])
 		return news_item_list
@@ -42,4 +41,22 @@ class NewsItemDetailView(generic.ListView):
 
 class NewsItemCreateView(generic.CreateView):
 
+	template_name = 'news/news_item_create.html'
+	context_object_name = 'news_item'
 
+	def get_queryset(self):
+		return None
+
+	def post(self, request, *args, **kwargs):
+
+		with open(settings.NEWS_JSON_PATH) as json_file:
+			my_news = json.load(json_file)
+
+			title = Form.cleaned_data['title']
+			text = Form.cleaned_data['text']
+			created = str(datetime.now())
+
+			news_item = [{'title': title, 'text': text, 'created': created}]
+
+		if not my_news.contains(news_item):
+			my_news.append(news_item)
