@@ -94,6 +94,9 @@ files:
   - name: __init__.py
     visible: true
     learner_created: true
+  - name: news/migrations/0005_alter_news_text.py
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9414#comment
 status: Failed
 feedback:

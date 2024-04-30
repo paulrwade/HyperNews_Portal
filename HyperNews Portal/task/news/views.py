@@ -1,6 +1,7 @@
-from django.http import HttpRequest
-from django.shortcuts import render
-from .forms import AddNewsItemForm
+# from django.http import HttpRequest
+# from django.shortcuts import render
+from .models import News
+from .forms import CreateNewsItemForm
 from django.views import generic
 from django.conf import settings
 from datetime import datetime
@@ -41,32 +42,61 @@ class NewsItemDetailView(generic.ListView):
 					return news_item
 
 
+# ------------------------------------------------------
 class NewsItemCreateView(generic.CreateView):
-
 	template_name = 'news_item_create.html'
-	context = {}
-	request = HttpRequest()
-	form = AddNewsItemForm(request.POST or None)
-	context['form'] = form
-
-	def get_queryset(self):
-		return None
+	model = News
+	fields = ['title', 'text']
+	success_url = "/news/"
 
 	def post(self, request, *args, **kwargs):
 
-		if request.POST:
+		news_item = CreateNewsItemForm(request.POST)
+		form = self.form_class(news_item)
 
-			if self.form.is_valid():
+		if form.is_valid():
+			with open(settings.NEWS_JSON_PATH) as json_file:
 
-				title = self.form.cleaned_data.get("title")
-				text = self.form.cleaned_data.get("text")
+				news_list = json.load(json_file)
 
-				with open(settings.NEWS_JSON_PATH) as json_file:
-					my_news = json.load(json_file)
+				if news_item not in news_list:
+					news_list.append(form.cleaned_data)
 
-					news_item = [{'title': title, 'text': text, 'created': str(datetime.now())}]
+# --------------------------------------------------------
+# class NewsItemUpdateView(generic.UpdateView):
+# 	model = News
+# 	fields = ['title', 'text', 'created']
+#
+#
+# class NewsItemDeleteView(generic.DeleteView):
+# 	model = News
+# 	fields = ['title', 'text', 'created']
 
-					if not my_news.contains(news_item):
-						my_news.append(news_item)
-
-		return render(request, template_name=self.template_name, context=self.context)
+# 	template_name = 'news_item_create.html'
+# 	form_class = CreateNewsItemForm
+# 	success_url = "/thanks/"
+#
+# 	def form_valid(self, form):
+# 		return super().form_valid(form)
+#
+# 	def post(self, request, *args, **kwargs):
+#
+# 		if request.POST:
+#
+# 			if self.form.is_valid():
+#
+# 				title = self.form.cleaned_data.get("title")
+# 				text = self.form.cleaned_data.get("text")
+#
+# 				with open(settings.NEWS_JSON_PATH) as json_file:
+# 					my_news = json.load(json_file)
+#
+# 					news_item = [{'title': title, 'text': text, 'created': str(datetime.now())}]
+#
+# 					if not my_news.contains(news_item):
+# 						my_news.append(news_item)
+#
+# 		return render(request, template_name=self.template_name, context=self.context)
+#
+#
+# # --------------------------------------------------
