@@ -1,3 +1,5 @@
+import random
+
 from django.shortcuts import redirect
 
 from .models import News
@@ -55,11 +57,11 @@ class NewsItemCreateView(generic.CreateView):
 
 	def post(self, request, *args, **kwargs):
 
-		title = request.POST['title']
-		text = request.POST['text']
-		link = request.POST['link']
+		title = str(request.POST['title'])
+		text = str(request.POST['text'])
+		link = str(random.randint(1000, 9999))
 
-		news_item_to_add = [{'title': title, 'text': text, 'created': str(datetime.now())}]
+		news_item_to_add = [{'title': title, 'text': text, 'created': str(datetime.now()), 'link': link}]
 
 		with open(settings.NEWS_JSON_PATH, 'w') as json_file:
 			json_file.write(json.dumps(news_item_to_add))
