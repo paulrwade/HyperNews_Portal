@@ -48,10 +48,6 @@ files:
   - name: tests.py
     visible: false
     learner_created: false
-  - name: db.test.sqlite3
-    visible: true
-    is_binary: true
-    learner_created: true
   - name: news/migrations/0003_alter_news_options_alter_news_created.py
     visible: true
     learner_created: true
@@ -68,9 +64,6 @@ files:
     visible: true
     learner_created: true
   - name: __init__.py
-    visible: true
-    learner_created: true
-  - name: news/templates/news/index.html
     visible: true
     learner_created: true
   - name: news/news.json
@@ -100,6 +93,12 @@ files:
   - name: news/templates/news/news_item_details.html
     visible: true
     learner_created: true
+  - name: news/templates/news/index.html
+    visible: true
+    learner_created: true
+  - name: db.test.sqlite3
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9415#comment
 status: Failed
 feedback:
@@ -107,5 +106,5 @@ feedback:
     Error in test #1
 
     Cannot apply migrations to an empty database.
-  time: "Tue, 30 Apr 2024 22:33:34 UTC"
+  time: "Tue, 30 Apr 2024 23:39:15 UTC"
 record: -1

@@ -9,7 +9,7 @@ import json
 
 
 class IndexView(generic.ListView):
-	template_name = 'index.html'
+	template_name = 'news_item_list.html'
 
 	def get_queryset(self):
 		return None
@@ -22,21 +22,24 @@ class NewsItemListView(generic.ListView):
 
 	def get_queryset(self, *args, **kwargs):
 
-		q = self.request.GET.get('q') or None
+		search_string = self.request.GET.get('q')
 
 		with (open(settings.NEWS_JSON_PATH) as json_file):
 			news_item_list = sorted(json.load(json_file), key=lambda k: k['created'])
 
 			for news_item in news_item_list:
+
 				news_item['created'] = datetime.fromisoformat(news_item['created'])
 
-			if q is not None:
-				for news_item in news_item_list:
-					if q not in news_item['title']:
-						news_item_list.remove(news_item)
+			if search_string is not None:
+
+				for i in range(len(news_item_list) - 1, -1, -1):
+
+					if search_string not in news_item_list[i]['title']:
+
+						del news_item_list[i]
 
 		return news_item_list
-
 
 # -----------------------------------------------------
 class NewsItemDetailView(generic.ListView):
