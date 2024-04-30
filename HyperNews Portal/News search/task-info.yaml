@@ -48,7 +48,7 @@ files:
   - name: tests.py
     visible: false
     learner_created: false
-  - name: db.sqlite3
+  - name: db.test.sqlite3
     visible: true
     is_binary: true
     learner_created: true
@@ -101,5 +101,11 @@ files:
     visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9415#comment
-status: Unchecked
+status: Failed
+feedback:
+  message: |-
+    Error in test #1
+
+    Cannot apply migrations to an empty database.
+  time: "Tue, 30 Apr 2024 22:33:34 UTC"
 record: -1

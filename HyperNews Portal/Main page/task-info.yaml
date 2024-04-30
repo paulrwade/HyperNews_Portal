@@ -57,7 +57,7 @@ files:
   - name: news/urls.py
     visible: true
     learner_created: true
-  - name: db.sqlite3
+  - name: db.test.sqlite3
     visible: true
     is_binary: true
     learner_created: true
