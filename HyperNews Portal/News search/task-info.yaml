@@ -109,7 +109,7 @@ feedback:
   message: |-
     Wrong answer in test #10
 
-    "Coming soon" (http://localhost:8000/) page should redirects to the http://localhost:8000/news/
+    "Coming soon" (http://localhost:8001/) page should redirects to the http://localhost:8001/news/
 
     Please find below the output of your program during this failed test.
 
@@ -119,29 +119,29 @@ feedback:
     Performing system checks...
 
     System check identified no issues (0 silenced).
-    May 01, 2024 - 00:17:34
+    May 01, 2024 - 00:20:21
     Django version 4.1.1, using settings 'hypernews.settings'
-    Starting development server at http://127.0.0.1:8000/
+    Starting development server at http://127.0.0.1:8001/
     Quit the server with CONTROL-C.
 
     stderr:
-    [01/May/2024 00:17:34] "GET / HTTP/1.1" 200 296
-    [01/May/2024 00:17:34] "GET / HTTP/1.1" 200 296
-    [01/May/2024 00:17:34] "GET /news/9234732/ HTTP/1.1" 200 295
-    [01/May/2024 00:17:34] "GET /news/1/ HTTP/1.1" 200 274
-    [01/May/2024 00:17:34] "GET /news/2/ HTTP/1.1" 200 274
-    [01/May/2024 00:17:34] "GET /news/3/ HTTP/1.1" 200 274
-    [01/May/2024 00:17:34] "GET /news/9234732/ HTTP/1.1" 200 295
-    [01/May/2024 00:17:34] "GET /news/ HTTP/1.1" 200 843
-    [01/May/2024 00:17:34] "GET /news/ HTTP/1.1" 200 843
-    [01/May/2024 00:17:34] "GET /news/ HTTP/1.1" 200 843
-    [01/May/2024 00:17:34] "GET /news/create/ HTTP/1.1" 200 781
-    [01/May/2024 00:17:34] "POST /news/create/ HTTP/1.1" 302 0
-    [01/May/2024 00:17:34] "GET /news HTTP/1.1" 301 0
-    [01/May/2024 00:17:34] "GET /news/ HTTP/1.1" 200 978
-    [01/May/2024 00:17:34] "GET /news/ HTTP/1.1" 200 978
-    [01/May/2024 00:17:34] "GET /news/create/ HTTP/1.1" 200 781
-    [01/May/2024 00:17:34] "GET /news/?q=2 HTTP/1.1" 200 500
-    [01/May/2024 00:17:34] "GET / HTTP/1.1" 200 296
-  time: "Wed, 01 May 2024 00:17:34 UTC"
+    [01/May/2024 00:20:21] "GET / HTTP/1.1" 200 296
+    [01/May/2024 00:20:21] "GET / HTTP/1.1" 200 296
+    [01/May/2024 00:20:21] "GET /news/9234732/ HTTP/1.1" 200 295
+    [01/May/2024 00:20:21] "GET /news/1/ HTTP/1.1" 200 274
+    [01/May/2024 00:20:21] "GET /news/2/ HTTP/1.1" 200 274
+    [01/May/2024 00:20:21] "GET /news/3/ HTTP/1.1" 200 274
+    [01/May/2024 00:20:21] "GET /news/9234732/ HTTP/1.1" 200 295
+    [01/May/2024 00:20:21] "GET /news/ HTTP/1.1" 200 843
+    [01/May/2024 00:20:21] "GET /news/ HTTP/1.1" 200 843
+    [01/May/2024 00:20:21] "GET /news/ HTTP/1.1" 200 843
+    [01/May/2024 00:20:21] "GET /news/create/ HTTP/1.1" 200 781
+    [01/May/2024 00:20:21] "POST /news/create/ HTTP/1.1" 302 0
+    [01/May/2024 00:20:21] "GET /news HTTP/1.1" 301 0
+    [01/May/2024 00:20:21] "GET /news/ HTTP/1.1" 200 978
+    [01/May/2024 00:20:21] "GET /news/ HTTP/1.1" 200 978
+    [01/May/2024 00:20:21] "GET /news/create/ HTTP/1.1" 200 781
+    [01/May/2024 00:20:21] "GET /news/?q=2 HTTP/1.1" 200 500
+    [01/May/2024 00:20:21] "GET / HTTP/1.1" 200 296
+  time: "Wed, 01 May 2024 00:20:22 UTC"
 record: -1
