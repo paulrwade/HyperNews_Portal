@@ -1,5 +1,3 @@
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/base.css' %}">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +14,7 @@
             <li><a href="/news/{{news_item.link}}/">{{news_item.title}}</a></li>
     {% endfor %}
     </ul>
-    <p><a href="/news/create/">Create a news item</a></p>
+    <p><a href="/news/create/">Create Page</a></p>
     <form method="get">
         <label for="q">Query: <input name="q" type="text"></label>
         <button type="submit">Search</button>

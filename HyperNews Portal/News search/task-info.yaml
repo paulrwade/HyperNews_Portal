@@ -100,13 +100,16 @@ files:
     visible: true
     is_binary: true
     learner_created: true
+  - name: db.test.sqlite3
+    visible: true
+    learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9415#comment
 status: Failed
 feedback:
   message: |-
-    Wrong answer in test #1
+    Wrong answer in test #10
 
-    "Coming soon" page (http://localhost:8000/) should contain "Coming soon" text
+    "Coming soon" (http://localhost:8000/) page should redirects to the http://localhost:8000/news/
 
     Please find below the output of your program during this failed test.
 
@@ -116,13 +119,29 @@ feedback:
     Performing system checks...
 
     System check identified no issues (0 silenced).
-    April 30, 2024 - 23:57:33
+    May 01, 2024 - 00:17:34
     Django version 4.1.1, using settings 'hypernews.settings'
     Starting development server at http://127.0.0.1:8000/
     Quit the server with CONTROL-C.
 
     stderr:
-    [30/Apr/2024 23:57:33] "GET / HTTP/1.1" 200 903
-    [30/Apr/2024 23:57:33] "GET / HTTP/1.1" 200 903
-  time: "Tue, 30 Apr 2024 23:57:34 UTC"
+    [01/May/2024 00:17:34] "GET / HTTP/1.1" 200 296
+    [01/May/2024 00:17:34] "GET / HTTP/1.1" 200 296
+    [01/May/2024 00:17:34] "GET /news/9234732/ HTTP/1.1" 200 295
+    [01/May/2024 00:17:34] "GET /news/1/ HTTP/1.1" 200 274
+    [01/May/2024 00:17:34] "GET /news/2/ HTTP/1.1" 200 274
+    [01/May/2024 00:17:34] "GET /news/3/ HTTP/1.1" 200 274
+    [01/May/2024 00:17:34] "GET /news/9234732/ HTTP/1.1" 200 295
+    [01/May/2024 00:17:34] "GET /news/ HTTP/1.1" 200 843
+    [01/May/2024 00:17:34] "GET /news/ HTTP/1.1" 200 843
+    [01/May/2024 00:17:34] "GET /news/ HTTP/1.1" 200 843
+    [01/May/2024 00:17:34] "GET /news/create/ HTTP/1.1" 200 781
+    [01/May/2024 00:17:34] "POST /news/create/ HTTP/1.1" 302 0
+    [01/May/2024 00:17:34] "GET /news HTTP/1.1" 301 0
+    [01/May/2024 00:17:34] "GET /news/ HTTP/1.1" 200 978
+    [01/May/2024 00:17:34] "GET /news/ HTTP/1.1" 200 978
+    [01/May/2024 00:17:34] "GET /news/create/ HTTP/1.1" 200 781
+    [01/May/2024 00:17:34] "GET /news/?q=2 HTTP/1.1" 200 500
+    [01/May/2024 00:17:34] "GET / HTTP/1.1" 200 296
+  time: "Wed, 01 May 2024 00:17:34 UTC"
 record: -1
