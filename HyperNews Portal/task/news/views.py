@@ -1,18 +1,12 @@
 import random
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
+
 from .models import News
 from .forms import CreateNewsItemForm
 from django.views import generic
 from django.conf import settings
 from datetime import datetime
 import json
-
-
-class IndexView(generic.ListView):
-	template_name = 'index.html'
-
-	def get_queryset(self):
-		return None
 
 
 # ------------------------------------------------------
