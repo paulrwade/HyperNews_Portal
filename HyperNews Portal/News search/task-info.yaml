@@ -93,15 +93,12 @@ files:
   - name: news/templates/news/news_item_details.html
     visible: true
     learner_created: true
-  - name: news/templates/news/coming_soon.html
+  - name: news/templates/news/index.html
     visible: true
     learner_created: true
   - name: db.sqlite3
     visible: true
     is_binary: true
-    learner_created: true
-  - name: db.test.sqlite3
-    visible: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9415#comment
 status: Failed

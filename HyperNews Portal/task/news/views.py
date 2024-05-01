@@ -9,7 +9,7 @@ import json
 
 
 class IndexView(generic.ListView):
-	template_name = 'coming_soon.html'
+	template_name = 'index.html'
 
 	def get_queryset(self):
 		return None
