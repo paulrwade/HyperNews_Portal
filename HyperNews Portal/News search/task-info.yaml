@@ -98,44 +98,9 @@ files:
     is_binary: true
     learner_created: true
 feedback_link: https://hyperskill.org/learn/step/9415#comment
-status: Failed
+status: Solved
 feedback:
-  message: |-
-    Wrong answer in test #10
-
-    "Coming soon" (http://localhost:8000/) page should redirects to the http://localhost:8000/news/
-
-    Please find below the output of your program during this failed test.
-
-    ---
-
-    stdout:
-    Performing system checks...
-
-    System check identified no issues (0 silenced).
-    May 01, 2024 - 00:40:32
-    Django version 4.1.1, using settings 'hypernews.settings'
-    Starting development server at http://127.0.0.1:8000/
-    Quit the server with CONTROL-C.
-
-    stderr:
-    [01/May/2024 00:40:32] "GET / HTTP/1.1" 200 866
-    [01/May/2024 00:40:32] "GET / HTTP/1.1" 200 866
-    [01/May/2024 00:40:32] "GET /news/9234732/ HTTP/1.1" 200 295
-    [01/May/2024 00:40:32] "GET /news/1/ HTTP/1.1" 200 274
-    [01/May/2024 00:40:32] "GET /news/2/ HTTP/1.1" 200 274
-    [01/May/2024 00:40:32] "GET /news/3/ HTTP/1.1" 200 274
-    [01/May/2024 00:40:32] "GET /news/9234732/ HTTP/1.1" 200 295
-    [01/May/2024 00:40:32] "GET /news/ HTTP/1.1" 200 866
-    [01/May/2024 00:40:32] "GET /news/ HTTP/1.1" 200 866
-    [01/May/2024 00:40:32] "GET /news/ HTTP/1.1" 200 866
-    [01/May/2024 00:40:32] "GET /news/create/ HTTP/1.1" 200 781
-    [01/May/2024 00:40:32] "POST /news/create/ HTTP/1.1" 302 0
-    [01/May/2024 00:40:32] "GET /news HTTP/1.1" 301 0
-    [01/May/2024 00:40:32] "GET /news/ HTTP/1.1" 200 1001
-    [01/May/2024 00:40:32] "GET /news/ HTTP/1.1" 200 1001
-    [01/May/2024 00:40:32] "GET /news/create/ HTTP/1.1" 200 781
-    [01/May/2024 00:40:32] "GET /news/?q=2 HTTP/1.1" 200 523
-    [01/May/2024 00:40:32] "GET / HTTP/1.1" 200 866
-  time: "Wed, 01 May 2024 00:40:32 UTC"
+  message: Well done! You've finished the project. Select a new project on <a href="https://hyperskill.org/projects">Hyperskill</a>
+    to continue learning.
+  time: "Wed, 01 May 2024 01:02:58 UTC"
 record: -1

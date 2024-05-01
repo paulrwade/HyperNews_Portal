@@ -9,6 +9,13 @@ from datetime import datetime
 import json
 
 
+class IndexView(generic.ListView):
+	template_name = 'news_item_list.html'
+
+	def get_queryset(self):
+		return
+
+
 # ------------------------------------------------------
 class NewsItemListView(generic.ListView):
 	template_name = 'news_item_list.html'
